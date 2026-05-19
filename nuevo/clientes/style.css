@@ -1,0 +1,464 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f5f7fc 0%, #eef2f9 100%);
+    color: #0a0f1c;
+    min-height: 100vh;
+}
+
+
+:root {
+    --color-fondo: #f8fafd;
+    --color-principal: #0a0f1c;
+    --color-secundario: #1a253c;
+    --color-acento: #4f46e5;
+    --color-acento-suave: #818cf8;
+    --color-hover: #6366f1;
+    --color-blanco: #ffffff;
+    --color-gris: #6b7280;
+    --color-gris-claro: #9ca3af;
+    --color-borde: #e5e9f0;
+    --color-peligro: #f43f5e;
+    --color-peligro-hover: #e11d48;
+    --color-exito: #10b981;
+    --color-exito-suave: #34d399;
+    --color-warning: #f59e0b;
+    --sombra-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --sombra-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    --sombra-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    --sombra-acento: 0 10px 30px -12px rgba(79, 70, 229, 0.35);
+    --radio: 16px;
+    --radio-sm: 12px;
+    --transicion: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.box_pdr_cliente {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+
+.box_pdr_cliente h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.boxs_card_cliente {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.card_info_cliente {
+    background: var(--color-blanco);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radio);
+    padding: 24px 20px;
+    box-shadow: var(--sombra-md);
+    text-align: center;
+    transition: var(--transicion);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.card_info_cliente::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-acento), var(--color-acento-suave));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.card_info_cliente:hover::before {
+    transform: scaleX(1);
+}
+
+.card_info_cliente:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-lg);
+    border-color: var(--color-acento-suave);
+}
+
+.card_info_cliente h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin-bottom: 12px;
+}
+
+.card_info_cliente p {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-acento), var(--color-acento-suave));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.card_info_cliente span {
+    font-size: 0.8rem;
+    color: black;
+    opacity: 0.4;
+    font-weight: bold;
+}
+
+/* =========================
+   CONTROLES DE USUARIO (Filtros + Botones)
+========================= */
+.box_control_usuario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: var(--color-blanco);
+    padding: 16px 24px;
+    border-radius: 60px;
+    box-shadow: var(--sombra-sm);
+    border: 1px solid var(--color-borde);
+}
+
+.filtros_usuario {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filtros_usuario input,
+.filtros_usuario select {
+    padding: 10px 18px;
+    border: 1px solid var(--color-borde);
+    border-radius: 40px;
+    font-size: 0.85rem;
+    background: var(--color-blanco);
+    outline: none;
+    transition: var(--transicion);
+    font-weight: 500;
+    color: var(--color-principal);
+}
+
+.filtros_usuario input:focus,
+.filtros_usuario select:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.box_btn_crear {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.box_btn_crear button {
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--color-acento), var(--color-acento-suave));
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+    box-shadow: var(--sombra-sm);
+}
+
+.box_btn_crear button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-acento);
+    filter: brightness(1.05);
+}
+
+/* =========================
+   TABLA DE USUARIOS (Rediseñada)
+========================= */
+.box_tabla_usuario {
+    background: var(--color-blanco);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+    margin-bottom: 40px;
+    border: 1px solid var(--color-borde);
+}
+
+.box_tabla_usuario table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.box_tabla_usuario thead {
+    background: linear-gradient(135deg, var(--color-secundario), #1f2a44);
+}
+
+.box_tabla_usuario th {
+    padding: 18px 16px;
+      text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.9);
+  
+}
+
+.box_tabla_usuario td {
+    padding: 16px;
+    font-size: 0.85rem;
+    color: var(--color-principal);
+    border-bottom: 1px solid var(--color-borde);
+       text-align: left;
+}
+
+.box_tabla_usuario tbody tr {
+    transition: var(--transicion);
+}
+
+.box_tabla_usuario tbody tr:hover {
+
+    transform: scale(1.01);
+}
+
+/* =========================
+   ROLES (Badges Modernos)
+========================= */
+.rol_admin {
+    background: linear-gradient(135deg, var(--color-exito), var(--color-exito-suave));
+    color: var(--color-blanco);
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.rol_cliente {
+    background: linear-gradient(135deg, var(--color-acento), var(--color-acento-suave));
+    color: var(--color-blanco);
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* =========================
+   ACCIONES (Botones)
+========================= */
+.box_acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.btn_editar,
+.btn_eliminar_cliente {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn_editar {
+    background: var(--color-acento-suave);
+    color: var(--color-blanco);
+}
+
+.btn_editar:hover {
+    background: var(--color-acento);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
+} 
+
+.btn_eliminar_cliente {
+    background: var(--color-peligro);
+    color: var(--color-blanco);
+}
+
+.btn_eliminar_cliente:hover {
+    background: var(--color-peligro-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.4);
+}
+
+
+.box_ultima_sesion {
+    
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--sombra-lg);
+    border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.box_ultima_sesion h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-principal), var(--color-acento));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.sesiones_scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 8px;
+    scroll-behavior: smooth;
+}
+
+.sesiones_scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sesiones_scroll::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.sesiones_scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-acento), var(--color-acento-suave));
+    border-radius: 10px;
+}
+
+.sesion_card {
+    background: var(--color-blanco);
+    border-radius: 20px;
+    padding: 16px 24px;
+    box-shadow: var(--sombra-sm);
+    border: 1px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.sesion_card:hover {
+    transform: translateX(4px);
+    border-color: var(--color-acento);
+    box-shadow: var(--sombra-md);
+    background: linear-gradient(135deg, #ffffff, #faf5ff);
+}
+
+.usuario_nombre {
+    font-weight: 700;
+    color: var(--color-principal);
+    font-size: 0.9rem;
+    min-width: 100px;
+}
+
+.usuario_rol {
+    background:var(--color-exito);
+    color: var(--color-principal);
+    padding: 4px 14px;
+    border-radius: 40px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    min-width: 90px;
+    text-align: center;
+    color: white;
+}
+
+.usuario_hora {
+    color: var(--color-secundario);
+    font-size: 0.75rem;
+    font-weight: 500;
+    min-width: 110px;
+    text-align: right;
+}
+
+
+@media (max-width: 768px) {
+    .box_pdr_cliente {
+        padding: 20px 16px;
+    }
+
+    .box_control_usuario {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 24px;
+        padding: 20px;
+    }
+
+    .filtros_usuario {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filtros_usuario input,
+    .filtros_usuario select {
+        width: 100%;
+    }
+
+    .box_btn_crear {
+        justify-content: center;
+    }
+
+    .box_tabla_usuario {
+        overflow-x: auto;
+        border-radius: 20px;
+    }
+
+    .box_tabla_usuario table {
+        min-width: 600px;
+    }
+
+    .box_acciones {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .sesion_card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .usuario_nombre,
+    .usuario_rol,
+    .usuario_hora {
+        min-width: auto;
+        text-align: center;
+    }
+
+    .usuario_hora {
+        text-align: center;
+    }
+}

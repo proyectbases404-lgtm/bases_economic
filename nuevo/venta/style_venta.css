@@ -1,0 +1,792 @@
+
+:root {
+    --color-principal: #1e293b;
+    --color-secundario: #3b82f6;
+    --color-fondo: #f1f5f9;
+    --color-blanco: #ffffff;
+    --color-gris: #94a3b8;
+    --color-peligro: #ef4444;
+    --color-exito: #22c55e;
+    --color-advertencia: #f59e0b;
+    --sombra-suave: 0 4px 10px rgba(0, 0, 0, 0.08);
+    --sombra-fuerte: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --radio: 10px;
+    --transicion: all 0.3s ease;
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* CONTENEDOR PRINCIPAL */
+.box_venta {
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+    border: 8px solid #e2e8f0;
+    border-radius: 12px;
+
+    
+}
+
+
+#contenido_punto_venta .box_venta {
+    min-height: auto;
+    height: auto;
+    overflow:visible;
+    
+}
+
+/* TARJETA DE PRODUCTOS */
+.card_ventas {
+    flex: 1.2;
+    background: var(--color-blanco);
+    padding: 20px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 0;
+}
+
+.card_ventas h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-principal);
+    margin-bottom: 5px;
+}
+
+/* INPUTS */
+.card_ventas input[type="text"],
+.card_ventas input[type="search"] {
+    padding: 12px 16px;
+    border-radius: 25px; 
+    border: 2px solid transparent;
+    outline: none;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: var(--transicion);
+    width: 100%;
+}
+
+.card_ventas input:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card_ventas input:focus {
+    border: 2px solid var(--color-secundario);
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+    transform: scale(1.01);
+}
+
+/* BOTONES DE CATEGORÍA */
+.nav_botton {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    padding-top: 10px;
+}
+
+.nav_botton .cat_bot {
+    border: none;
+    background: #e2e8f0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: var(--transicion);
+    white-space: nowrap;
+}
+
+.nav_botton .cat_bot:hover {
+    background: var(--color-secundario);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.nav_botton .cat_bot.active {
+    background: var(--color-secundario);
+    color: white;
+}
+
+/* GRILLA DE PRODUCTOS */
+.Box_productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+/* Scroll para productos */
+.Box_productos::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Box_productos::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px; 
+}
+
+.Box_productos::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #60a5fa, #3b82f6);
+    border-radius: 4px;
+}
+
+.Box_productos::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #93c5fd, #2563eb);
+}
+
+/* CARD PRODUCTO */
+.producto {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 120px;
+    padding: 16px 12px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    border: 1px solid #e2e8f0;
+    box-shadow: 6px 6px 14px rgba(15, 23, 42, 0.08),
+        -4px -4px 10px rgba(255, 255, 255, 0.9);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+/* Línea decorativa superior */
+.producto::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 18px 18px 0 0;
+}
+
+.producto:hover {
+    transform: translateY(-6px) scale(1.02);
+    background: linear-gradient(160deg, #eff6ff, #dbeafe);
+    border-color: #93c5fd;
+    box-shadow: 0 10px 24px rgba(59, 130, 246, 0.18),
+        0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.producto:hover::before {
+    opacity: 1;
+}
+
+.producto:active {
+    transform: scale(0.98);
+}
+
+.producto:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: 3px;
+}
+
+/* Nombre del producto */
+.producto h3,
+.producto .nombre_producto {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-principal);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+    min-height: 40px;
+    margin-bottom: 8px;
+}
+
+/* Precio */
+.producto p,
+.producto .precio_producto {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-secundario);
+    margin-top: auto;
+}
+
+/* Etiqueta de stock/fecha */
+.producto span {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    background: #dbeafe;
+    border-radius: 999px;
+}
+
+/* ============================================
+   PANEL DERECHO - VENTA ACTUAL
+   ============================================ */
+
+.card_info_ventas {
+    flex: 1;
+    background: var(--color-blanco);
+    padding: 20px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 350px;
+}
+
+.card_info_ventas label {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-principal);
+}
+
+/* Tabla de ventas */
+.tabla_box {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.tabla_ventas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabla_ventas thead {
+    background: linear-gradient(90deg, #1e293b, #3b82f6);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+}
+
+.tabla_ventas th,
+.tabla_ventas td {
+    padding: 12px 10px;
+    text-align: center;
+}
+
+.tabla_ventas th {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tabla_ventas tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background 0.2s ease;
+}
+
+.tabla_ventas tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.tabla_ventas tbody tr:hover {
+    background: #e0f2fe;
+}
+
+/* Controles de cantidad */
+.box_edit {
+    display: inline-flex;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    vertical-align: middle;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-blanco);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.cant_input {
+    width: 50px;
+    min-width: 40px;
+    height: 32px;
+    padding: 0 4px;
+    border: none;
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-principal);
+    background: #f8fafc;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.cant_input::-webkit-outer-spin-button,
+.cant_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cant_input:focus {
+    outline: none;
+    background: var(--color-blanco);
+}
+
+.cant_input:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: -2px;
+}
+
+.bot_mod {
+    flex: 0 0 auto;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-principal);
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.bot_mod:hover {
+    background: #dbeafe;
+    color: var(--color-secundario);
+}
+
+.bot_mod:active {
+    background: #bfdbfe;
+}
+
+.bot_mod:focus-visible {
+    outline: 2px solid var(--color-secundario);
+    outline-offset: -2px;
+}
+
+/* Botón eliminar con imagen */
+.btn_eliminar {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: transparent;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transicion);
+}
+
+.btn_eliminar img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: block;
+}
+
+.btn_eliminar:hover {
+    transform: scale(1.15);
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 8px;
+}
+
+.btn_eliminar:active {
+    transform: scale(0.95);
+}
+
+/* Sección de pago */
+.box_cancelar {
+    margin-top: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.box_total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.label_pago {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.label_monto {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-principal);
+}
+
+.select_box_pago {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.select_box_pago label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.select_box_pago select,
+.select_box_pago input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+    background: #fff;
+    color: #1e293b;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.select_box_pago select:focus,
+.select_box_pago input[type="number"]:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.select_box_pago input:disabled {
+    background: #f1f5f9;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+/* Campos de pago en fila */
+.pago_row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.pago_row .select_box_pago {
+    flex: 1;
+}
+
+.pago_row .select_box_pago:last-child {
+    flex: 1;
+}
+
+/* Botones de acción */
+.Select_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn_pagar {
+    flex: 1;
+    min-width: 140px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-secundario), #2563eb);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn_pagar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+}
+
+.btn_pagar:active {
+    transform: translateY(0);
+}
+
+.btn_cancelar_venta {
+    flex: 1;
+    min-width: 140px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #b91c1c;
+    background: #fff;
+    border: 1px solid #fecaca;
+    transition: var(--transicion);
+}
+
+.btn_cancelar_venta:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+    color: #b91c1c;
+}
+
+/* ============================================
+   MEDIA QUERIES - RESPONSIVO PARA MÓVIL
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+    .box_venta {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .card_info_ventas {
+        min-width: 100%;
+    }
+
+    .Box_productos {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        max-height: 300px;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 600px) {
+    .box_venta {
+        padding: 10px;
+        gap: 15px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .card_ventas,
+    .card_info_ventas {
+        padding: 12px;
+        width: 100%;
+        min-width: 0;
+        border-radius: 10px;
+    }
+
+    .card_ventas h2 {
+        font-size: 18px;
+    }
+
+    /* Grilla de productos - 2 columnas en móvil */
+    .Box_productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        max-height: 280px;
+        padding: 5px;
+    }
+
+    .producto {
+        min-height: 90px;
+        padding: 10px 6px;
+        border-radius: 12px;
+    }
+
+    .producto h3,
+    .producto .nombre_producto {
+        font-size: 12px;
+        min-height: 32px;
+        margin-bottom: 4px;
+    }
+
+    .producto p,
+    .producto .precio_producto {
+        font-size: 14px;
+    }
+
+    .producto span {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+
+    /* Botones de categoría - scroll horizontal */
+    .nav_botton {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 8px 0;
+        gap: 8px;
+    }
+
+    .nav_botton::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav_botton .cat_bot {
+        flex: 0 0 auto;
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 15px;
+    }
+
+    /* Tabla de ventas */
+    .tabla_box {
+        height: 180px;
+        border-radius: 8px;
+    }
+
+    .tabla_ventas th,
+    .tabla_ventas td {
+        padding: 6px 4px;
+        font-size: 11px;
+    }
+
+    .tabla_ventas th {
+        font-size: 10px;
+    }
+
+    /* Controles de cantidad más pequeños */
+    .box_edit {
+        transform: scale(0.85);
+        transform-origin: center;
+    }
+
+    .cant_input {
+        width: 35px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .bot_mod {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .btn_eliminar {
+        width: 24px;
+        height: 24px;
+    }
+
+    .btn_eliminar img {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Sección de pago */
+    .box_cancelar {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .box_total {
+        padding-bottom: 8px;
+    }
+
+    .label_pago {
+        font-size: 12px;
+    }
+
+    .label_monto {
+        font-size: 22px;
+    }
+
+    .pago_row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .select_box_pago label {
+        font-size: 11px;
+    }
+
+    .select_box_pago select,
+    .select_box_pago input[type="number"] {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .Select_actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn_pagar,
+    .btn_cancelar_venta {
+        width: 100%;
+        min-width: 100%;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    /* Input buscador */
+    .card_ventas input[type="search"] {
+        padding: 10px 14px;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .box_venta {
+        padding: 8px;
+        gap: 10px;
+    }
+
+    .Box_productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .producto {
+        min-height: 80px;
+        padding: 8px 4px;
+    }
+
+    .producto h3 {
+        font-size: 11px;
+    }
+
+    .producto p {
+        font-size: 13px;
+    }
+
+    .label_monto {
+        font-size: 20px;
+    }
+
+    .select_box_pago {
+        width: 100%;
+    }
+}

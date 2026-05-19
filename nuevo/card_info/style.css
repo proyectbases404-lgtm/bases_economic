@@ -1,0 +1,209 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.boxs_card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 20px;
+}
+
+.card_info {
+    background: linear-gradient(145deg, #ffffff, #f1f3f6);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+    border-radius: 16px;
+
+    box-shadow:
+        8px 8px 18px rgba(163, 177, 198, 0.25),
+        -8px -8px 18px rgba(255, 255, 255, 0.8);
+
+    transition: all 0.3s ease;
+    text-align: left;
+    backdrop-filter: blur(6px);
+}
+
+.card_info:hover {
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+        10px 10px 25px rgba(0, 0, 0, 0.15),
+        -6px -6px 20px rgba(255, 255, 255, 0.9);
+}
+
+/* INGRESOS */
+.ingresos:hover {
+    box-shadow:
+        0 10px 25px rgba(7, 88, 209, 0.35);
+
+}
+
+/* PRODUCTOS */
+.productos:hover {
+    box-shadow:
+        0 10px 25px rgba(235, 168, 235, 0.45);
+
+}
+
+/* INVENTARIO */
+.inventario:hover {
+    box-shadow:
+        0 10px 25px rgba(164, 228, 164, 0.45);
+
+}
+
+/* STOCK */
+.stock:hover {
+    box-shadow:
+        0 10px 25px rgba(123, 139, 161, 0.45);
+
+}
+
+.box_flot {
+    width: auto;
+    min-width: 45px;
+    height: auto;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    background: rgba(34, 197, 94, 0.18);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+.label_flot {
+    color: #166534;
+    font-size: 10px;
+    line-height: 1;
+
+}
+
+.producs {
+    background-color: #aac5ce;
+    border-color: transparent;
+    box-shadow: 0 4px 10px #8b9bb0;
+
+
+}
+
+.producs .label_flot {
+    color: #334155;
+}
+
+.box_st {
+
+    background-color: #303c4e;
+    border-color: transparent;
+    box-shadow: 0 4px 10px #303c4e;
+    
+}
+
+.box_st .label_flot {
+
+    color: white;
+
+
+}
+
+
+.icon_box {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #005bff, #072f3b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+
+    transition: all 0.25s ease;
+}
+
+/* efecto hover sutil */
+.card_info:hover .icon_box {
+    transform: scale(1.05);
+}
+
+/* ICONO EN BLANCO */
+.icon_box img {
+    width: 25px;
+    height: 25px;
+
+    filter: brightness(0) invert(1);
+}
+
+
+
+.violet {
+    background: rgb(176, 69, 176);
+}
+
+.green {
+    background: rgb(10, 187, 10);
+}
+
+.plomo {
+
+    background: #334155;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+.span_card {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.card_info h3 {
+    font-size: 24px;
+    margin: 0;
+    color: #111827;
+    font-weight: bold;
+}
+
+.label_card {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+
+/* TEXTO PRINCIPAL (SPAN ABAJO DE LA IMAGEN) */
+.span_card {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* VALOR */
+.card_info h3 {
+    font-size: 26px;
+    margin: 0;
+    font-weight: bold;
+    color: #222;
+}
+
+/* SUBTEXTO */
+.label_card {
+    font-size: 13px;
+    color: #777;
+}
+

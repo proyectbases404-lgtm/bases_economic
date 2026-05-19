@@ -1,0 +1,247 @@
+/* 
+   RESET
+ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+   VARIABLES
+ */
+:root {
+    --color-principal: #0f172a;
+    --color-secundario: #1e293b;
+    --color-acento: #38bdf8;
+    --color-hover: #334155;
+    --color-fondo: #f8fafc;
+    --color-texto: #e2e8f0;
+    --color-blanco: #ffffff;
+    --color-borde: #cbd5e1;
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.info_enca_modify {
+    display: flex;
+    justify-content: space-between;
+    /* 👈 esto es lo correcto */
+    align-items: center;
+    /* centra verticalmente */
+    background: linear-gradient(135deg,
+            var(--color-principal),
+            var(--color-secundario));
+    color: var(--color-blanco);
+    padding: 25px 35px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 20px 20px 0 0;
+}
+
+.info_enca_modify img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+}
+
+.info_enca_modify img:hover {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
+.info_enca_modify img:active {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* 
+   CONTENEDOR PRINCIPAL
+ */
+.container_modify_product {
+    width: 100%;
+    max-width: 1300px;
+    margin: auto;
+    background: var(--color-blanco);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* 
+   TITULO
+ */
+
+/* 
+   SUBTITULOS
+ */
+.container_modify_product h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--color-principal);
+    position: relative;
+    padding-left: 14px;
+}
+
+.container_modify_product h2::before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    background: var(--color-acento);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+/* 
+   SECCIONES
+ */
+.form_section_modify {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    margin-bottom: 35px;
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+}
+
+/* 
+   CAMPOS
+ */
+.form_group_modify {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_group_modify label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-secundario);
+}
+
+/* 
+   INPUTS Y SELECTS
+ */
+input,
+select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    background-color: var(--color-blanco);
+    color: var(--color-principal);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    transform: translateY(-1px);
+}
+
+
+
+.form_actions_modify {
+    margin-top: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form_actions_modify button {
+    border: none;
+    padding: 14px 28px;
+    background: linear-gradient(135deg,
+            var(--color-acento),
+            #0ea5e9);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25);
+}
+
+.form_actions_modify button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,
+            #0ea5e9,
+            #0284c7);
+}
+
+.select_preview_modify {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* 
+   RESPONSIVE GENERAL
+ */
+@media (max-width: 992px) {
+    .form_section_modify {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 18px;
+    }
+
+    .container_modify_product h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container_modify_product {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .container_modify_product h1 {
+        font-size: 22px;
+        padding: 18px;
+    }
+
+    .form_section_modify {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form_actions_modify {
+        justify-content: center;
+    }
+
+    .form_actions_modify button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .container_modify_product h1 {
+        font-size: 20px;
+    }
+
+    .container_modify_product h2 {
+        font-size: 18px;
+    }
+
+    input,
+    select {
+        font-size: 13px;
+        padding: 11px;
+    }
+}

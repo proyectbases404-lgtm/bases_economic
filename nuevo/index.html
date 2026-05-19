@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Responsive Flex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dash/style.css">
+    <link rel="stylesheet" href="card_info/style.css">
+    <link rel="stylesheet" href="inventario/style.css">
+    <link rel="stylesheet" href="venta/style_venta.css">
+    <link rel="stylesheet" href="gestion_producto/style.css">
+    <link rel="stylesheet" href="most_agg_product.css">
+    <link rel="stylesheet" href="crear_producto/style.css">
+    <link rel="stylesheet" href="modificar_producto/style.css">
+    <link rel="stylesheet" href="aviso_emer/style.css">
+  <link rel="stylesheet" href="est_venta/style.css">
+  <link rel="stylesheet" href="ver_ventas/style.css">
+  <link rel="stylesheet" href="clientes/style.css">
+</head>
+
+<body>
+    <div class="Box_padre">
+        <!-- SIDEBAR -->
+        <div class="box_nav" id="sidebar">
+            <div class="box_opn">
+                <img src="img/menu.png  " id="btnMenuSidebar">
+                <h1>InvVentas Licor</h1>
+
+            </div>
+
+            <div class="Refer_box">
+                <h4>Principal</h4>
+            </div>
+
+            <div class="nav_button active" data-section="inicio">
+                <div class="box_active"></div>
+                <img src="img/pagina-de-inicio.png" alt="">
+                <label>Inicio</label>
+            </div>
+
+            <div class="nav_button" data-section="punto-venta">
+                <div class="box_active"></div>
+                <img src="img/carrito.png" alt="">
+                <label>Punto de Venta</label>
+            </div>
+
+            <div class="Refer_box">
+                <h4>Gestion</h4>
+            </div>
+
+            <div class="nav_button" data-section="inventario">
+                <div class="box_active"></div>
+                <img src="img/lista.png" alt="">
+                <label>Inventario</label>
+            </div>
+            <div class="nav_button" data-section="productos">
+                <div class="box_active"></div>
+                <img src="img/cubo.png" alt="">
+                <label>Productos</label>
+            </div>
+            <div class="nav_button" data-section="ventas">
+                <div class="box_active"></div>
+                <img src="img/ventas.png" alt="">
+                <label>Ventas</label>
+            </div>
+
+            <div class="nav_button" data-section="clientes">
+                <div class="box_active"></div>
+                <img src="img/personas.png" alt="">
+                <label>Clientes</label>
+            </div>
+            <div class="Refer_box">
+                <h4>Proveedores</h4>
+            </div>
+            <div class="nav_button" data-section="proveedores">
+                <div class="box_active"></div>
+                <img src="img/proveedor.png" alt="">
+                <label>Proveedores</label>
+            </div>
+            <div class="nav_button" data-section="compras">
+                <div class="box_active"></div>
+                <img src="img/bolsa-de-la-compra.png" alt="">
+                <label>Compras</label>
+            </div>
+
+            <div class="Refer_box">
+                <h4>Reportes</h4>
+            </div>
+            <div class="nav_button" data-section="reportes">
+                <div class="box_active"></div>
+                <img src="img/informe-seo.png" alt="">
+                <label>Reportes</label>
+            </div>
+
+            <div class="nav_button" data-section="cerrar-sesion">
+                <div class="box_active"></div>
+                <img style="filter: invert(16%) sepia(96%) saturate(7496%) hue-rotate(2deg) brightness(98%) contrast(119%);"
+                    src="img/cerrar-sesion-de-usuario.png" alt="">
+                <label style="color: red;">Cerrar Sesion</label>
+            </div>
+
+
+
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="box_padre_2">
+
+            <header class="header">
+                <div class="box_comp">
+                    <button id="btnMenuHeader" class="btn-mobile">☰</button>
+                    <span>Bienvenido,</span>
+                    <label>Carmelo</label>
+                </div>
+
+                <div class="Cont_usuario">
+                    <div class="Box_disen">
+                        <div></div>
+                    </div>
+                    <span class="rol">admin</span>
+                </div>
+            </header>
+
+            <main>
+                <div class="box_main">
+                    <section id="inicio" class="content-section active">
+                        <div class="inicio-header">
+                            <h1>Panel de Control</h1>
+                            <p>Resumen del sistema</p>
+                        </div>
+                        <div id="card_box">
+                        </div>
+                        <div id="dash_container">
+                        </div>
+                    </section>
+
+                    <section id="punto-venta" class="content-section ">
+
+                       
+                    </section>
+
+                    <section id="inventario" class="content-section">
+
+                        <div class="box_inventario" id="box_inventario">
+
+                        </div>
+
+                    </section>
+
+                    <section id="productos" class="content-section">
+
+
+
+                    </section>
+
+                    <section id="ventas" class="content-section">
+
+                    </section>
+
+                    <section id="clientes" class="content-section">
+
+                    </section>
+
+                    <section id="proveedores" class="content-section">
+                        <h2>Proveedores</h2>
+                        <p>Revisa y administra la información de tus proveedores.</p>
+                    </section>
+
+                    <section id="reportes" class="content-section">
+                        <h2>Reportes</h2>
+                        <p>Visualiza reportes de ventas, inventario y rendimiento.</p>
+                    </section>
+
+                    <section id="cerrar-sesion" class="content-section">
+                        <h2>Cerrar Sesión</h2>
+                        <p>Haz clic en cerrar sesión para salir del sistema.</p>
+                    </section>
+                    <section id="compras" class="content-section">
+                        <h2>Compras</h2>
+                        <p>Administra las compras realizadas y los pedidos a proveedores.</p>
+                    </section>
+                </div>
+            </main>
+
+        </div>
+
+        <div class="most_agg_produ" id="most_agg_produ">
+
+
+        </div>
+
+
+        <div class="most_aviso" id="most_aviso">
+
+        </div>
+
+    </div>
+    <script>
+        // ELEMENTOS
+        const sidebar = document.getElementById("sidebar");
+        const btnSidebar = document.getElementById("btnMenuSidebar");
+        const btnHeader = document.getElementById("btnMenuHeader");
+        const navButtons = document.querySelectorAll(".nav_button[data-section]");
+        const sections = document.querySelectorAll(".content-section");
+
+        const productosContainer = document.getElementById("productos");
+        const ventasContainer = document.getElementById("ventas");
+        const mostAggProdu = document.getElementById("most_agg_produ");
+        const mostAviso = document.getElementById("most_aviso");
+
+        // ESTADO
+        let ventaCargada = false;
+        let estilosCargados = false;
+
+        // =========================
+        // FUNCIONES GENERALES
+        // =========================
+
+        const toggleSidebar = () => {
+            sidebar.classList.toggle("expanded");
+        };
+
+        const showSection = (sectionId) => {
+            sections.forEach(section =>
+                section.classList.toggle("active", section.id === sectionId)
+            );
+
+            if (sectionId !== "inicio") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                document.querySelector("main")
+                    ?.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        };
+
+        const setActiveButton = (clickedButton) => {
+            navButtons.forEach(btn =>
+                btn.classList.toggle("active", btn === clickedButton)
+            );
+        };
+
+        const cargarHTML = async (url, containerId) => {
+            try {
+                const response = await fetch(url);
+                const html = await response.text();
+
+                document.getElementById(containerId).innerHTML = html;
+            } catch (error) {
+                console.error(`❌ Error cargando ${url}`, error);
+            }
+        };
+
+        // =========================
+        // CARGAR ESTILOS
+        // =========================
+
+        const cargarEstilos = (url) => {
+            return new Promise((resolve, reject) => {
+
+                if (document.querySelector(`link[href*="${url}"]`)) {
+                    return resolve();
+                }
+
+                const link = document.createElement("link");
+
+                link.rel = "stylesheet";
+                link.href = url;
+
+                link.onload = resolve;
+                link.onerror = reject;
+
+                document.head.appendChild(link);
+            });
+        };
+
+        // =========================
+        // CARGAR PUNTO DE VENTA
+        // =========================
+
+        const cargarVentaSeccion = async (url, contenedorId) => {
+
+            if (ventaCargada) {
+                console.log("✅ Punto de venta ya cargado");
+                return;
+            }
+
+            try {
+
+                if (!estilosCargados) {
+                    await cargarEstilos("style.css");
+                    estilosCargados = true;
+                }
+
+                const response = await fetch(`${url}?t=${Date.now()}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const html = await response.text();
+
+                const temp = document.createElement("div");
+                temp.innerHTML = html;
+
+                const scripts = [...temp.querySelectorAll("script")];
+
+                scripts.forEach(script => script.remove());
+
+                document.getElementById(contenedorId).innerHTML = temp.innerHTML;
+
+                for (const oldScript of scripts) {
+
+                    if (oldScript.src) {
+
+                        const existe = document.querySelector(
+                            `script[src*="${oldScript.src}"]`
+                        );
+
+                        if (!existe) {
+                            await new Promise((resolve, reject) => {
+
+                                const script = document.createElement("script");
+
+                                script.src = oldScript.src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+
+                                document.body.appendChild(script);
+                            });
+                        }
+
+                    } else {
+
+                        const script = document.createElement("script");
+
+                        script.textContent = `
+                        (() => {
+                            ${oldScript.textContent}
+                        })();
+                    `;
+
+                        document.body.appendChild(script);
+                    }
+                }
+
+                ventaCargada = true;
+
+                console.log("✅ venta.html cargado correctamente");
+
+            } catch (error) {
+
+                document.getElementById(contenedorId).innerHTML =
+                    "<p style='color:red'>❌ Error cargando la sección de venta</p>";
+
+                console.error("❌ Error:", error);
+            }
+        };
+
+        // =========================
+        // MODAL PRODUCTO
+        // =========================
+
+        const openMostAggProdu = () => {
+            mostAggProdu.classList.add("open");
+            document.body.style.overflow = "hidden";
+        };
+
+        const closeMostAggProdu = () => {
+            mostAggProdu.classList.remove("open");
+            document.body.style.overflow = "";
+        };
+
+        // =========================
+        // MODAL AVISO
+        // =========================
+
+        const openMostAviso = () => {
+            mostAviso.classList.add("open");
+            document.body.style.overflow = "hidden";
+        };
+
+        const closeMostAviso = () => {
+            mostAviso.classList.remove("open");
+            document.body.style.overflow = "";
+        };
+
+        // =========================
+        // NAVEGACIÓN
+        // =========================
+
+        navButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const sectionId = button.dataset.section;
+
+                showSection(sectionId);
+                setActiveButton(button);
+
+                if (sectionId === "punto-venta") {
+                    cargarVentaSeccion(
+                        "venta/venta.html",
+                        "punto-venta"
+                    );
+                }
+            });
+        });
+
+
+
+
+
+        // =========================
+        // CARGAS INICIALES
+        // =========================
+
+        cargarHTML("dash/index.html", "dash_container");
+        cargarHTML("card_info/index.html", "card_box");
+        cargarHTML("inventario/index.html", "box_inventario");
+        cargarHTML("gestion_producto/index.html", "productos");
+        cargarHTML("est_venta/index.html", "ventas");
+        cargarHTML("aviso_emer/index.html", "most_aviso");
+        cargarHTML("clientes/index.html", "clientes");
+
+        const cargarModalProducto = async (url) => {
+            try {
+                const response = await fetch(`${url}?t=${Date.now()}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const html = await response.text();
+                const temp = document.createElement("div");
+                temp.innerHTML = html;
+
+                const scripts = [...temp.querySelectorAll("script")];
+                scripts.forEach(script => script.remove());
+                mostAggProdu.innerHTML = temp.innerHTML;
+
+                for (const oldScript of scripts) {
+                    if (oldScript.src) {
+                        const existe = document.querySelector(
+                            `script[src*="${oldScript.src}"]`
+                        );
+
+                        if (!existe) {
+                            await new Promise((resolve, reject) => {
+                                const script = document.createElement("script");
+                                script.src = oldScript.src;
+                                script.onload = resolve;
+                                script.onerror = reject;
+                                document.body.appendChild(script);
+                            });
+                        }
+                    } else {
+                        const script = document.createElement("script");
+                        script.textContent = `(() => { ${oldScript.textContent} })();`;
+                        document.body.appendChild(script);
+                    }
+                }
+
+                openMostAggProdu();
+            } catch (error) {
+                mostAggProdu.innerHTML = "<p style='color:red'>❌ Error cargando el modal</p>";
+                console.error("❌ Error cargando modal", error);
+            }
+        };
+
+        // =========================
+        // EVENTOS PRODUCTO
+        // =========================
+
+        productosContainer?.addEventListener("click", (event) => {
+
+            const clicked = event.target.closest("#agg_new_prod");
+            const modify = event.target.closest("#btn_modi_gestion");
+
+            if (clicked) {
+                event.preventDefault();
+                return cargarModalProducto("crear_producto/index.html");
+            }
+
+            if (modify) {
+                event.preventDefault();
+                return cargarModalProducto("modificar_producto/index.html");
+            }
+        });
+
+        ventasContainer?.addEventListener("click", (event) => {
+            const viewVenta = event.target.closest("#slct_vent");
+
+            if (viewVenta) {
+                event.preventDefault();
+                return cargarModalProducto("ver_ventas/index.html");
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+
+            const target = event.target;
+
+            const closeButton = target.closest("#regr_new_produ");
+            const modifyButton = target.closest("#regr_modify_produ");
+            const verVentasClose = target.closest("#vol_v_venta");
+            const btnAceptar = target.closest("#btn_aceptar");
+            const btnCancelar = target.closest("#btn_cancelar");
+
+            // Abrir modal aviso
+            if (closeButton || modifyButton || verVentasClose) {
+                event.preventDefault();
+                return openMostAviso();
+            }
+
+            // Cerrar modal producto
+            if (modifyButton) {
+                event.preventDefault();
+                return closeMostAggProdu();
+            }
+
+            // Cerrar modal aviso
+            if (btnCancelar) {
+                event.preventDefault();
+                return closeMostAviso();
+            }
+
+
+            if (btnAceptar) {
+                event.preventDefault();
+                return closeMostAviso(), closeMostAggProdu();
+            }
+            // Cerrar al hacer click fuera
+            if (
+                mostAggProdu.classList.contains("open") &&
+                target === mostAggProdu
+            ) {
+                closeMostAggProdu();
+            }
+
+            if (
+                mostAviso.classList.contains("open") &&
+                target === mostAviso
+            ) {
+                closeMostAviso();
+            }
+
+            // Cerrar sidebar fuera
+            const insideSidebar = sidebar.contains(target);
+            const clickBtn =
+                btnSidebar?.contains(target) ||
+                btnHeader?.contains(target);
+
+            if (
+                !insideSidebar &&
+                !clickBtn &&
+                sidebar.classList.contains("expanded")
+            ) {
+                sidebar.classList.remove("expanded");
+            }
+        });
+
+        // =========================
+        // BOTONES SIDEBAR
+        // =========================
+
+        btnSidebar?.addEventListener("click", toggleSidebar);
+        btnHeader?.addEventListener("click", toggleSidebar);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+        :root {
+            --color-principal: #0f172a;
+            --color-secundario: #1e293b;
+            --color-acento: #38bdf8;
+            --color-hover: #334155;
+            --color-fondo: #f8fafc;
+            --color-texto: #e2e8f0;
+            --color-blanco: #ffffff;
+            --color-borde: #cbd5e1;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+
+        .contenedor-venta {
+        width: 1200px;
+            margin: auto;
+            background: var(--color-blanco);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-borde);
+        }
+
+        /* ENCABEZADO */
+        .encabezado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: linear-gradient(135deg,
+                    var(--color-principal),
+                    var(--color-secundario));
+            color: var(--color-blanco);
+            padding: 25px 35px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .encabezado h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .encabezado p {
+            opacity: 0.9;
+            font-size: 15px;
+        }
+
+        /* INFO GENERAL */
+        .info-venta {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 30px;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--color-borde);
+        }
+
+        .card-info_venta {
+            flex: 1;
+            background: var(--color-blanco);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid var(--color-borde);
+            transition: 0.3s ease;
+        }
+
+        .card-info_venta:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .titulo-info_venta {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .valor-info {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--color-principal);
+        }
+
+        /* TABLA */
+        .tabla-contenedor {
+            padding: 30px;
+        }
+
+        .titulo-tabla {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--color-principal); 
+        }
+
+        .tabla-venta {
+            min-height: 350px;
+            max-height: 350px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border: 1px solid var(--color-borde);
+            border-radius: 14px;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+
+        thead {
+            background: var(--color-principal);
+            color: var(--color-texto);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+
+        }
+
+        th,
+        td {
+            padding: 16px;
+            text-align: center;
+        }
+
+        th {
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--color-borde);
+            transition: 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: #e0f2fe;
+        }
+
+        tbody td {
+            color: #334155;
+            font-size: 15px;
+        }
+
+        .estado {
+            background: #dcfce7;
+            color: #166534;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* TOTAL */
+        .caja-total {
+            display: flex;
+            justify-content: flex-end;
+            padding: 25px 30px;
+            background: #f8fafc;
+        }
+
+        .box-total {
+            background: var(--color-principal);
+            color: var(--color-texto);
+            padding: 20px 30px;
+            border-radius: 14px;
+            text-align: center;
+            min-width: 250px;
+        }
+
+        .box-total h2 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: normal;
+        }
+
+        .box-total p {
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--color-acento);
+        }
+
+        .encabezado img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .encabezado img:hover {
+            transform: scale(1.4);
+            cursor: pointer;
+        }
+
+        .encabezado img:active {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .encabezado h1 {
+                font-size: 24px;
+            }
+
+            .info-venta {
+
+                flex-direction: column;
+            }
+
+            th,
+            td {
+                padding: 12px;
+                font-size: 13px;
+            }
+        }
