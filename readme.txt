@@ -1,27 +1,25 @@
-para ver que se modifico o alguna actualizacion usar
+# COMANDOS BÁSICOS DE GIT
 
+# Ver archivos modificados o actualizaciones del proyecto
 git status
 
+# Agregar todos los archivos modificados
+git add .
 
-este comando selecciona todos los archivos 
+# Guardar cambios con una descripción
+git commit -m "Aquí va la descripción de los cambios"
 
-
-git add . 
-
-
-ese comando hace una breve descripcion de lo que se modifico
-git commit -m "aqui va la descripcion" 
-
-
-con este aplicamos los cambios y luego actualizamos la pagina
-
+# Subir los cambios al repositorio remoto (rama main)
 git push -u origin main
 
+# Clonar un repositorio en tu computadora
 
-DESCARGALO PRIX
 git clone https://github.com/proyectbases404-lgtm/bases_economic.git para clonar el repositorio
 
+# Descargar y unir las últimas actualizaciones del repositorio
+git pull
 
 
-para unir y comprobar todas las actualizacio y accder todo al main principal o el raiz
-git pull 
+
+
+
