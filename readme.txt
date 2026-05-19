@@ -20,3 +20,8 @@ git push -u origin main
 
 DESCARGALO PRIX
 git clone https://github.com/proyectbases404-lgtm/bases_economic.git para clonar el repositorio
+
+
+
+para unir y comprobar todas las actualizacio y accder todo al main principal o el raiz
+git pull 
