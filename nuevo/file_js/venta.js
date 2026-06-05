@@ -150,7 +150,7 @@ function filtrarPorCategoria(categoria) {
 // ============================================
 function buscarProductos(termino) {
     const productos = document.querySelectorAll('.producto');
-    const busqueda = termo.toLowerCase().trim();
+    const busqueda = termino.toLowerCase().trim();
 
     productos.forEach(producto => {
         const nombre = producto.dataset.name.toLowerCase();

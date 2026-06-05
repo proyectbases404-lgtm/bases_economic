@@ -4,20 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>se MODIFICO EL GIT</title>
+    <title>InvEnTVenta</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="dash/style.css">
-    <link rel="stylesheet" href="card_info/style.css">
-    <link rel="stylesheet" href="inventario/style.css">
-    <link rel="stylesheet" href="venta/style_venta.css">
-    <link rel="stylesheet" href="gestion_producto/style.css">
-    <link rel="stylesheet" href="most_agg_product.css">
-    <link rel="stylesheet" href="crear_producto/style.css">
-    <link rel="stylesheet" href="modificar_producto/style.css">
-    <link rel="stylesheet" href="aviso_emer/style.css">
-  <link rel="stylesheet" href="est_venta/style.css">
-  <link rel="stylesheet" href="ver_ventas/style.css">
-  <link rel="stylesheet" href="clientes/style.css">
+    <link rel="stylesheet" href="sections.css">
+    <link rel="stylesheet" href="modals.css">
 </head>
 
 <body>
@@ -131,46 +121,1386 @@
                             <p>Resumen del sistema</p>
                         </div>
                         <div id="card_box">
+                            <!-- Inlined from nuevo/card_info/index.html -->
+                            <div class="boxs_card">
+                                <div class="card_info ingresos">
+                                    <div class="box_flot">
+                                        <label class="label_flot">Hoy</label>
+                                    </div>
+                                    <div class="icon_box">
+                                        <img src="img/carrito.png" class="card_img carrito">
+                                    </div>
+                                    <span class="span_card">INGRESOS DEL DÍA</span>
+                                    <h3>C$ 0.00</h3>
+                                    <label class="label_card">Disponible</label>
+                                </div>
+
+                                <div class="card_info productos">
+                                    <div class="box_flot producs">
+                                        <label class="label_flot">Total</label>
+                                    </div>
+                                    <div class="icon_box violet">
+                                        <img src="img/caja.png" class="card_img">
+                                    </div>
+                                    <span class="span_card">PRODUCTOS</span>
+                                    <h3>6</h3>
+                                    <label class="label_card">En inventario</label>
+                                </div>
+
+                                <div class="card_info inventario">
+                                    <div class="box_flot">
+                                        <label class="label_flot">valor</label>
+                                    </div>
+                                    <div class="icon_box green">
+                                        <img src="img/dolar.png" class="card_img">
+                                    </div>
+                                    <span class="span_card">VALOR INVENTARIO</span>
+                                    <h3>C$ 0.00</h3>
+                                    <label class="label_card">Valor estimado</label>
+                                </div>
+
+                                <div class="card_info stock">
+                                    <div class="box_flot box_st">
+                                        <label class="label_flot">stock</label>
+                                    </div>
+                                    <div class="icon_box plomo">
+                                        <img src="img/advertencia.png" class="card_img">
+                                    </div>
+                                    <span class="span_card">STOCK BAJO</span>
+                                    <h3>8</h3>
+                                    <label class="label_card">Productos bajos</label>
+                                </div>
+                            </div>
                         </div>
                         <div id="dash_container">
+                            <!-- Inlined from nuevo/dash/index.html -->
+                            <div class="box_dash">
+                                <div class="dash_box">
+                                    <div class="chart-container">
+                                        <h2>Ventas de la Semana</h2>
+
+                                        <div class="chart">
+                                            <div class="bar-container">
+                                                <div class="bar lunes"><span>120</span></div>
+                                                <div class="label">Lun</div>
+                                            </div>
+
+                                            <div class="bar-container">
+                                                <div class="bar martes"><span>180</span></div>
+                                                <div class="label">Mar</div>
+                                            </div>
+
+                                            <div class="bar-container">
+                                                <div class="bar miercoles"><span>90</span></div>
+                                                <div class="label">Mié</div>
+                                            </div>
+
+                                            <div class="bar-container">
+                                                <div class="bar jueves"><span>220</span></div>
+                                                <div class="label">Jue</div>
+                                            </div>
+
+                                            <div class="bar-container">
+                                                <div class="bar viernes"><span>160</span></div>
+                                                <div class="label">Vie</div>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div class="bar sabado"><span>160</span></div>
+                                                <div class="label">Sab</div>
+                                            </div>
+                                            <div class="bar-container">
+                                                <div class="bar domingo"><span>160</span></div>
+                                                <div class="label">Dom</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ulti_ventas">
+                                    <h2>Producto más vendido</h2>
+                                    <div class="contenedor">
+                                        <div class="dona"></div>
+                                        <div class="leyenda">
+                                            <div class="item">
+                                                <div class="color" style="background:#6C63FF;"></div> Whisky (30%)
+                                            </div>
+                                            <div class="item">
+                                                <div class="color" style="background:#4DD0E1;"></div> Vodka (25%)
+                                            </div>
+                                            <div class="item">
+                                                <div class="color" style="background:#2F3E46;"></div> Ron (20%)
+                                            </div>
+                                            <div class="item">
+                                                <div class="color" style="background:#2EC4B6;"></div> Cerveza (15%)
+                                            </div>
+                                            <div class="item">
+                                                <div class="color" style="background:#E0E0E0;"></div> Tequila (10%)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
 
                     <section id="punto-venta" class="content-section ">
 
-                       
-                    </section>
+                        <!-- Inlined from nuevo/venta/venta.html -->
+                        <div class="box_venta">
 
-                    <section id="inventario" class="content-section">
+                            <!-- PRODUCTOS -->
+                            <div class="card_ventas">
+                                <h2>Punto de Venta</h2>
 
-                        <div class="box_inventario" id="box_inventario">
+                                <input type="search" id="buscador" placeholder="Buscar productos...">
+
+                                <div class="nav_botton">
+                                    <button class="cat_bot active" data-category="todos">Todos</button>
+                                    <button class="cat_bot" data-category="cervezas">Cervezas</button>
+                                    <button class="cat_bot" data-category="vinos">Vinos</button>
+                                    <button class="cat_bot" data-category="ron">Ron</button>
+                                    <button class="cat_bot" data-category="whisky">Whisky</button>
+
+                                </div>
+
+                                <div class="Box_productos" id="productos-container">
+                                    <!-- Productos con data attributes para JavaScript -->
+                                    <div class="producto" data-id="1" data-category="cervezas" data-name="Toña"
+                                        data-price="35">
+                                        <h3>Toña</h3>
+                                        <p>C$35</p>
+                                        <span>Vence: 28/09/2026</span>
+                                    </div>
+
+                                    <div class="producto" data-id="2" data-category="ron" data-name="Flor de Caña"
+                                        data-price="250">
+                                        <h3>Flor de Caña</h3>
+                                        <p>C$250</p>
+                                        <span>Vence: 2028</span>
+                                    </div>
+
+                                    <div class="producto" data-id="3" data-category="vinos" data-name="Vino Tinto"
+                                        data-price="300">
+                                        <h3>Vino Tinto</h3>
+                                        <p>C$300</p>
+                                        <span>Vence: 2027</span>
+                                    </div>
+
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+                                    <div class="producto" data-id="4" data-category="cervezas" data-name="Victoria"
+                                        data-price="30">
+                                        <h3>Victoria</h3>
+                                        <p>C$30</p>
+                                        <span>En stock</span>
+                                    </div>
+
+                                    <div class="producto" data-id="5" data-category="whisky" data-name="Johnnie Walker"
+                                        data-price="450">
+                                        <h3>Johnnie Walker</h3>
+                                        <p>C$450</p>
+                                        <span>En stock</span>
+                                    </div>
+
+                                    <div class="producto" data-id="6" data-category="ron" data-name="Bacardi"
+                                        data-price="180">
+                                        <h3>Bacardi</h3>
+                                        <p>C$180</p>
+                                        <span>En stock</span>
+                                    </div>
+
+                                    <div class="producto" data-id="7" data-category="vinos" data-name="Vino Blanco"
+                                        data-price="280">
+                                        <h3>Vino Blanco</h3>
+                                        <p>C$280</p>
+                                        <span>Vence: 2026</span>
+                                    </div>
+
+                                    <div class="producto" data-id="8" data-category="cervezas" data-name="Estrella"
+                                        data-price="35">
+                                        <h3>Estrella</h3>
+                                        <p>C$35</p>
+                                        <span>En stock</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card_info_ventas">
+                                <label for="metodo_pago">Venta Actual</label>
+                                <div class="tabla_box">
+                                    <table class="tabla_ventas">
+                                        <thead>
+                                            <tr>
+                                                <th>Producto</th>
+                                                <th>Cant</th>
+                                                <th>Total</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabla_ventas">
+
+                                            <tr id="fila_vacia">
+                                                <td colspan="4" style="color: #94a3b8; padding: 20px;">
+                                                    No hay productos en la venta
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="box_cancelar">
+                                    <div class="box_total">
+                                        <span class="label_pago">Total</span>
+                                        <span class="label_monto" id="total_venta">C$0</span>
+                                    </div>
+
+                                    <div class="select_box_pago">
+                                        <label for="metodo_pago">Método de pago</label>
+                                        <select name="metodo_pago" id="metodo_pago">
+                                            <option value="efectivo">Efectivo</option>
+                                            <option value="tarjeta">Tarjeta</option>
+                                            <option value="transferencia">Transferencia</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="pago_row">
+                                        <div class="select_box_pago">
+                                            <label for="pago_con">Pago con</label>
+                                            <input type="number" id="pago_con" placeholder="C$ recibidos" min="0"
+                                                step="1">
+                                        </div>
+                                        <div class="select_box_pago">
+                                            <label for="vuelto">Cambio</label>
+                                            <input type="number" id="vuelto" placeholder="C$ Cambio" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="Select_actions">
+                                        <button type="button" class="btn_pagar" id="btn_pagar">Pagar</button>
+                                        <button type="button" class="btn_cancelar_venta" id="btn_cancelar">Cancelar
+                                            venta</button>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
                     </section>
 
+                    <section id="inventario" class="content-section">
+
+                        <div class="box_inventario" id="box_inventario">
+                            <!-- Inlined from nuevo/inventario/index.html -->
+                            <div class="box_inventario_padre">
+                                <div class="box_input_tabla_inventario">
+                                    <h1>Inventario</h1>
+                                    <div class="box_input_inventario">
+                                        <input type="text" placeholder="Buscar producto...">
+                                        <select name="cat_invent" id="cat_invent">
+                                            <option value="">Seleccionar categoría</option>
+                                            <option value="cervezas">Cervezas</option>
+                                            <option value="vinos">Vinos</option>
+                                            <option value="ron">Ron</option>
+                                            <option value="whisky">Whisky</option>
+                                        </select>
+                                        <select name="ubica_inventario" id="ubica_i">
+                                            <option value="">Seleccionar ubicación</option>
+                                            <option value="almacen">Almacén</option>
+                                            <option value="mostrador">Mostrador</option>
+                                        </select>
+                                        <select name="select_sucur" id="select_sucur">
+                                            <option value="">Seleccionar Sucursal</option>
+                                            <option value="">MGA-001</option>
+                                            <option value="">MGA-002</option>
+                                        </select>
+                                    </div>
+                                    <div class="box_tabla_inventario">
+                                        <table class="tabla_inventario">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Categoría</th>
+                                                    <th>Precio</th>
+                                                    <th>Stock</th>
+                                                    <th>Ubicación</th>
+                                                    <th>Fecha de vencimiento</th>
+                                                    <th>Lote</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cerveza Lager</td>
+                                                    <td>Cervezas</td>
+                                                    <td>C$10.00</td>
+                                                    <td>50</td>
+                                                    <td>Almacén</td>
+                                                    <td>2023-12-31</td>
+                                                    <td>L001</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vino Tinto</td>
+                                                    <td>Vinos</td>
+                                                    <td>C$20.00</td>
+                                                    <td>30</td>
+                                                    <td>Mostrador</td>
+                                                    <td>2024-06-30</td>
+                                                    <td>L002</td>
+                                                </tr>
+                                                <var>
+                                                    <tr>
+                                                        <td>Cerveza Lager</td>
+                                                        <td>Cervezas</td>
+                                                        <td>C$10.00</td>
+                                                        <td>50</td>
+                                                        <td>Almacén</td>
+                                                        <td>2023-12-31</td>
+                                                        <td>L001</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Vino Tinto</td>
+                                                        <td>Vinos</td>
+                                                        <td>C$20.00</td>
+                                                        <td>30</td>
+                                                        <td>Mostrador</td>
+                                                        <td>2024-06-30</td>
+                                                        <td>L002</td>
+                                                    </tr>
+                                                </var>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="box_card_info">
+                                    <div class="card_info stock">
+                                        <div class="box_flot box_st">
+                                            <label class="label_flot">stock</label>
+                                        </div>
+                                        <div class="icon_box plomo">
+                                            <img src="img/advertencia.png" class="card_img">
+                                        </div>
+                                        <span class="span_card">STOCK BAJO</span>
+                                        <h3>8</h3>
+                                        <label class="label_card">Productos bajos</label>
+                                        <a href="#" id="deta_stock" class="btn_card">Ver detalles</a>
+                                    </div>
+                                    <div class="card_info vencimiento">
+                                        <div class="box_flot box_venc">
+                                            <label class="label_flot">vencimiento</label>
+                                        </div>
+                                        <div class="icon_box plomo">
+                                            <img src="img/advertencia.png" class="card_img">
+                                        </div>
+                                        <span class="span_card">VENCIMIENTO PRÓXIMO</span>
+                                        <h3>5</h3>
+                                        <label class="label_card">Productos próximos a vencer</label>
+                                        <a href="#" id="deta_venci" class="btn_card">Ver detalles</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
                     <section id="productos" class="content-section">
-
-
-
+                        <div class="tabs_productos_header">
+                            <button class="tab_prod_btn active" data-tab="lista-productos">Lista de Productos</button>
+                            <button class="tab_prod_btn" data-tab="precios-agrupacion">Precios por Agrupación (Por Mayor)</button>
+                        </div>
+                        
+                        <div class="tab_content_prod active" id="tab_lista_productos">
+                            <!-- Inlined from nuevo/gestion_producto/index.html -->
+                            <div class="box_pdr_producto">
+                            <header class="header_productos">
+                                <div>
+                                    <h1>Gestión de Productos</h1>
+                                    <p>Aqui puedes agregar, modificar o eliminar productos del inventario.</p>
+                                </div>
+                                <div class="box_input_agg">
+                                    <input type="text" placeholder="Nombre del producto">
+                                    <div id="agg_new_prod">
+                                        <img src="img/boton-agregar.png" alt="">
+                                        <button>
+                                            AGREGAR NUEVO PRODUCTO
+                                        </button>
+                                    </div>
+                                    <select name="Selec_catego" id="Selec_catego">
+                                        <option value="">Seleccionar categoría</option>
+                                        <option value="cervezas">Cervezas</option>
+                                        <option value="vinos">Vinos</option>
+                                    </select>
+                                </div>
+                            </header>
+                            <div class="box_tabla_agg">
+                                <table class="tabla_agg">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Agrupaciones</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla_gestion_productos_body">
+                                        <!-- Rendered dynamically by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </div> <!-- End tab_lista_productos -->
+                        
+                        <!-- Contenido de Precios por Agrupación -->
+                        <div class="tab_content_prod" id="tab_precios_agrupacion" style="display: none;">
+                            <div class="box_pdr_precios_agrupacion">
+                                <div class="header_precios">
+                                    <h2>Configurar Precios por Mayor / Agrupación</h2>
+                                    <p>Asigna precios especiales y descuentos por volumen (six-pack, cajas, etc.) para incentivar la compra al por mayor.</p>
+                                </div>
+                                
+                                <div class="grid_config_precios">
+                                    <!-- Panel de Configuración -->
+                                    <div class="card_config_precios">
+                                        <h3>Seleccionar Producto</h3>
+                                        <div class="form_group" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px;">
+                                            <label for="select_prod_agrupacion" style="font-size: 0.75rem; font-weight: 600; color: var(--color-gris); text-transform: uppercase;">Producto</label>
+                                            <select id="select_prod_agrupacion" style="padding: 10px 16px; border: 1px solid var(--color-borde); border-radius: 8px; font-size: 0.875rem; background: var(--color-fondo); outline: none; transition: var(--transicion); font-weight: 500; color: var(--color-principal);">
+                                                <option value="">Seleccione un producto...</option>
+                                                <option value="1" data-price="35">Cerveza Toña (Precio Base: C$35)</option>
+                                                <option value="2" data-price="250">Flor de Caña 7 Años (Precio Base: C$250)</option>
+                                                <option value="3" data-price="300">Vino Tinto Concha y Toro (Precio Base: C$300)</option>
+                                                <option value="4" data-price="30">Cerveza Victoria (Precio Base: C$30)</option>
+                                                <option value="5" data-price="1500">Whisky Chivas Regal (Precio Base: C$1500)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div id="agrupaciones_config_container" style="display: none; margin-top: 20px;">
+                                            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--color-principal); margin-bottom: 12px;">Agrupaciones y Precios Especiales</h4>
+                                            <div class="agrupaciones_list" id="lista_agrupaciones_inputs">
+                                                <!-- Inputs generados dinámicamente -->
+                                            </div>
+                                            <button class="btn_generar" id="btn_guardar_precios_agrupacion" style="width: 100%; margin-top: 24px; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                                                Guardar Precios de Agrupación
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Panel de Resumen -->
+                                    <div class="card_resumen_precios">
+                                        <h3>Resumen de Precios por Agrupación</h3>
+                                        <div class="tabla_resumen_container">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Producto</th>
+                                                        <th>Agrupación</th>
+                                                        <th>Precio Normal</th>
+                                                        <th>Precio Especial</th>
+                                                        <th>Descuento</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabla_resumen_precios_body">
+                                                    <tr>
+                                                        <td>Cerveza Toña</td>
+                                                        <td>Six Pack (6 uds)</td>
+                                                        <td>C$210.00</td>
+                                                        <td class="precio_promo">C$180.00</td>
+                                                        <td><span class="badge_pct">14.3% desc.</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Cerveza Toña</td>
+                                                        <td>Caja (24 uds)</td>
+                                                        <td>C$840.00</td>
+                                                        <td class="precio_promo">C$700.00</td>
+                                                        <td><span class="badge_pct">16.7% desc.</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Flor de Caña 7 Años</td>
+                                                        <td>Caja (12 uds)</td>
+                                                        <td>C$3,000.00</td>
+                                                        <td class="precio_promo">C$2,700.00</td>
+                                                        <td><span class="badge_pct">10.0% desc.</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Cerveza Victoria</td>
+                                                        <td>Six Pack (6 uds)</td>
+                                                        <td>C$180.00</td>
+                                                        <td class="precio_promo">C$160.00</td>
+                                                        <td><span class="badge_pct">11.1% desc.</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="ventas" class="content-section">
+                        <div class="tabs_ventas_header">
+                            <button class="tab_ventas_btn active" data-tab="historial-ventas">Historial de Ventas</button>
+                            <button class="tab_ventas_btn" data-tab="arqueo-caja">Arqueo de Caja (Control Diario)</button>
+                        </div>
+                        
+                        <!-- Pestaña 1: Historial de Ventas -->
+                        <div class="tab_content_ventas active" id="tab_historial_ventas">
+                            <div class="box_pdr_ventas">
+                                <header class="header_ventas">
+                                    <div>
+                                        <h1>Ventas Realizadas</h1>
+                                        <p>Consulta y revisa las transacciones de ventas del sistema.</p>
+                                    </div>
+                                    <div class="filtros_ventas">
+                                        <div class="input_filtro_v">
+                                            <label for="Selec_pago">Filtrar por Pago</label>
+                                            <select name="Selec_pago" id="Selec_pago">
+                                                <option value="">Todos los Métodos</option>
+                                                <option value="Efectivo">Efectivo</option>
+                                                <option value="Tarjeta">Tarjeta</option>
+                                                <option value="Transferencia">Transferencia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card_info_ventas_kpi">
+                                        <div class="icon_box_ventas">
+                                            <img src="img/mano.png" class="card_img">
+                                        </div>
+                                        <div class="kpi_v_content">
+                                            <span>Ventas de Hoy (Efectivo)</span>
+                                            <h3 id="ventas_hoy_monto">C$ 350.00</h3>
+                                            <label id="ventas_hoy_cant">1 Venta realizada</label>
+                                        </div>
+                                    </div>
+                                </header>
+                                
+                                <div class="box_tb_ventas">
+                                    <table class="tb_ventas" id="tabla_ventas_realizadas">
+                                        <thead>
+                                            <tr>
+                                                <th>Venta</th>
+                                                <th>Fecha Realizada</th>
+                                                <th>Monto</th>
+                                                <th>Forma de Pago</th>
+                                                <th>Realizada por</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-pago="Tarjeta">
+                                                <td><strong>VTA-0010</strong></td>
+                                                <td>2026-05-31</td>
+                                                <td style="color: green; font-weight: bold;">C$ 2,500.00</td>
+                                                <td>Tarjeta</td>
+                                                <td>Carmelo</td>
+                                                <td>
+                                                    <button class="btn_observar_v">Observar venta</button>
+                                                </td>
+                                            </tr>
+                                            <tr data-pago="Transferencia">
+                                                <td><strong>VTA-0009</strong></td>
+                                                <td>2026-05-31</td>
+                                                <td style="color: green; font-weight: bold;">C$ 800.00</td>
+                                                <td>Transferencia</td>
+                                                <td>Carmelo</td>
+                                                <td>
+                                                    <button class="btn_observar_v">Observar venta</button>
+                                                </td>
+                                            </tr>
+                                            <tr data-pago="Efectivo">
+                                                <td><strong>VTA-0008</strong></td>
+                                                <td>2026-05-31</td>
+                                                <td style="color: green; font-weight: bold;">C$ 350.00</td>
+                                                <td>Efectivo</td>
+                                                <td>Elizabeth</td>
+                                                <td>
+                                                    <button class="btn_observar_v">Observar venta</button>
+                                                </td>
+                                            </tr>
+                                            <tr data-pago="Tarjeta">
+                                                <td><strong>VTA-0007</strong></td>
+                                                <td>2026-05-30</td>
+                                                <td style="color: green; font-weight: bold;">C$ 1,200.00</td>
+                                                <td>Tarjeta</td>
+                                                <td>Elizabeth</td>
+                                                <td>
+                                                    <button class="btn_observar_v">Observar venta</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Pestaña 2: Arqueo de Caja -->
+                        <div class="tab_content_ventas" id="tab_arqueo_caja" style="display: none;">
+                            <div class="box_pdr_arqueo">
+                                <header class="header_arqueo">
+                                    <div>
+                                        <h1>Arqueo de Caja Diario</h1>
+                                        <p>Realiza el recuento físico de efectivo para verificar el cuadre de caja de la sucursal.</p>
+                                    </div>
+                                </header>
+                                
+                                <div class="grid_arqueo">
+                                    <!-- Formulario de Conteo de Monedas y Billetes -->
+                                    <div class="card_conteo_arqueo">
+                                        <h3>Recuento Físico de Efectivo</h3>
+                                        
+                                        <div class="box_monto_inicial" style="margin-bottom: 20px;">
+                                            <div class="form_group_v">
+                                                <label for="arq_monto_inicial">Efectivo Inicial en Caja (C$)</label>
+                                                <input type="number" id="arq_monto_inicial" value="1000" style="width: 100%; height: 40px; border-radius: 8px; border: 1px solid var(--color-borde); padding: 0 12px; font-weight: bold;">
+                                            </div>
+                                        </div>
+
+                                        <div class="denominaciones_grid">
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 1,000</label>
+                                                <input type="number" class="denominacion_input" data-value="1000" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 500</label>
+                                                <input type="number" class="denominacion_input" data-value="500" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 200</label>
+                                                <input type="number" class="denominacion_input" data-value="200" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 100</label>
+                                                <input type="number" class="denominacion_input" data-value="100" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 50</label>
+                                                <input type="number" class="denominacion_input" data-value="50" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 20</label>
+                                                <input type="number" class="denominacion_input" data-value="20" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Billetes C$ 10</label>
+                                                <input type="number" class="denominacion_input" data-value="10" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Monedas C$ 5</label>
+                                                <input type="number" class="denominacion_input" data-value="5" value="0" min="0">
+                                            </div>
+                                            <div class="denominacion_row">
+                                                <label>Monedas C$ 1</label>
+                                                <input type="number" class="denominacion_input" data-value="1" value="0" min="0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Resultados del Arqueo -->
+                                    <div class="card_resultado_arqueo">
+                                        <h3>Cuadre de Caja</h3>
+                                        
+                                        <div class="cuadre_kpis">
+                                            <div class="cuadre_kpi_row">
+                                                <span>(+) Ventas en Efectivo (Hoy):</span>
+                                                <strong id="arq_ventas_efectivo">C$ 350.00</strong>
+                                            </div>
+                                            <div class="cuadre_kpi_row">
+                                                <span>(+) Monto Inicial:</span>
+                                                <strong id="arq_monto_inicial_disp">C$ 1,000.00</strong>
+                                            </div>
+                                            <div class="cuadre_kpi_row expected_total">
+                                                <span>(=) Efectivo Esperado:</span>
+                                                <strong id="arq_efectivo_esperado">C$ 1,350.00</strong>
+                                            </div>
+                                            <div class="cuadre_kpi_row counted_total">
+                                                <span>(=) Efectivo Contado Físico:</span>
+                                                <strong id="arq_efectivo_contado" style="color: #2563eb;">C$ 0.00</strong>
+                                            </div>
+                                            
+                                            <div class="cuadre_result_badge" id="arq_resultado_badge">
+                                                <span class="badge_cuadre neutral">Sin Conteo</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="box_observacion_arqueo" style="margin-top: 20px; display: flex; flex-direction: column; gap: 6px;">
+                                            <label for="arq_observacion" style="font-size: 0.8rem; font-weight: 600; color: var(--color-gris);">Observaciones del Arqueo</label>
+                                            <textarea id="arq_observacion" placeholder="Anotaciones sobre el cuadre diario..." style="width: 100%; height: 80px; border-radius: 8px; border: 1px solid var(--color-borde); padding: 10px; font-size: 0.85rem; outline: none; resize: none;"></textarea>
+                                        </div>
+
+                                        <div class="arqueo_actions" style="display: flex; gap: 12px; margin-top: 24px;">
+                                            <button class="btn_generar" id="btn_guardar_arqueo" style="flex: 1; height: 42px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Guardar Arqueo</button>
+                                            <button class="btn_secundario_rep" id="btn_imprimir_arqueo" style="height: 42px;">Imprimir Arqueo</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Historial de Arqueos Registrados -->
+                                    <div class="card_historial_arqueo spans_full" style="grid-column: 1 / -1; margin-top: 10px;">
+                                        <h3>Historial de Arqueos de Caja</h3>
+                                        <div class="tabla_resumen_container">
+                                            <table style="width: 100%; border-collapse: collapse;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Fecha</th>
+                                                        <th>Cajero</th>
+                                                        <th>Efectivo Inicial</th>
+                                                        <th>Ventas Efectivo</th>
+                                                        <th>Esperado</th>
+                                                        <th>Físico Contado</th>
+                                                        <th>Diferencia</th>
+                                                        <th>Estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabla_historial_arqueos">
+                                                    <tr>
+                                                        <td><strong>2026-05-30</strong></td>
+                                                        <td>Elizabeth</td>
+                                                        <td>C$ 1,000.00</td>
+                                                        <td>C$ 2,250.00</td>
+                                                        <td>C$ 3,250.00</td>
+                                                        <td>C$ 3,250.00</td>
+                                                        <td style="color: green; font-weight: bold;">C$ 0.00</td>
+                                                        <td><span class="badge_pct">Cuadrada</span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>2026-05-29</strong></td>
+                                                        <td>Elizabeth</td>
+                                                        <td>C$ 1,000.00</td>
+                                                        <td>C$ 450.00</td>
+                                                        <td>C$ 1,450.00</td>
+                                                        <td>C$ 1,430.00</td>
+                                                        <td style="color: red; font-weight: bold;">-C$ 20.00</td>
+                                                        <td><span class="badge_pct" style="background: #fee2e2; color: #b91c1c;">Faltante</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="clientes" class="content-section">
-
+                        <!-- Inlined from nuevo/clientes/index.html -->
+                        <div class="box_pdr_cliente">
+                            <h1>Gestión de Usuarios</h1>
+                            <div class="boxs_card_cliente">
+                                <div class="card_info_cliente">
+                                    <h3>Usuarios Totales</h3>
+                                    <p>120</p>
+                                    <span>Registrados en el sistema</span>
+                                </div>
+                                <div class="card_info_cliente">
+                                    <h3>Usuarios Activos</h3>
+                                    <p>95</p>
+                                    <span>Con compras recientes</span>
+                                </div>
+                                <div class="card_info_cliente">
+                                    <h3>Administradores</h3>
+                                    <p>18</p>
+                                    <span>Usuarios con permisos especiales</span>
+                                </div>
+                                <div class="card_info_cliente">
+                                    <h3>Clientes</h3>
+                                    <p>9</p>
+                                    <span>Usuarios con permisos limitados</span>
+                                </div>
+                            </div>
+                            <div class="box_control_usuario">
+                                <div class="filtros_usuario">
+                                    <input type="text" placeholder="Buscar usuario...">
+                                    <select>
+                                        <option value="">Filtrar por rol</option>
+                                        <option value="">Administrador</option>
+                                        <option value="">Cliente</option>
+                                    </select>
+                                </div>
+                                <div class="box_btn_crear">
+                                    <button id="btn_abrir_crear_usuario">+ Crear Usuario</button>
+                                </div>
+                            </div>
+                            <div class="box_tabla_usuario">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Usuario</th>
+                                            <th>Contraseña</th>
+                                            <th>Rol</th>
+                                            <th>Última Sesión</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla_usuarios_body">
+                                        <tr>
+                                            <td>Juan Pérez</td>
+                                            <td>juanp</td>
+                                            <td>********</td>
+                                            <td>
+                                                <span class="rol_admin">Administrador</span>
+                                            </td>
+                                            <td class="ultima-sesion">2023-10-15 14:30</td>
+                                            <td>
+                                                <div class="box_acciones">
+                                                    <button class="btn_editar">Editar</button>
+                                                    <button class="btn_eliminar_cliente">Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>María López</td>
+                                            <td>marial</td>
+                                            <td>********</td>
+                                            <td>
+                                                <span class="rol_cliente">Cliente</span>
+                                            </td>
+                                            <td class="ultima-sesion">2023-10-14 09:15</td>
+                                            <td>
+                                                <div class="box_acciones">
+                                                    <button class="btn_editar">Editar</button>
+                                                    <button class="btn_eliminar_cliente">Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carlos Mendoza</td>
+                                            <td>carlosm</td>
+                                            <td>********</td>
+                                            <td>
+                                                <span class="rol_admin">Administrador</span>
+                                            </td>
+                                            <td class="ultima-sesion">2023-10-13 16:45</td>
+                                            <td>
+                                                <div class="box_acciones">
+                                                    <button class="btn_editar">Editar</button>
+                                                    <button class="btn_eliminar_cliente">Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ana Torres</td>
+                                            <td>anatorres</td>
+                                            <td>********</td>
+                                            <td>
+                                                <span class="rol_cliente">Cliente</span>
+                                            </td>
+                                            <td class="ultima-sesion">2023-10-12 11:20</td>
+                                            <td>
+                                                <div class="box_acciones">
+                                                    <button class="btn_editar">Editar</button>
+                                                    <button class="btn_eliminar_cliente">Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="box_ultima_sesion">
+                                <h2>Últimas Sesiones Recientes</h2>
+                                <div class="sesiones_scroll">
+                                    <div class="sesion_card">
+                                        <span class="usuario_nombre">Juan Pérez</span>
+                                        <span class="usuario_rol">Administrador</span>
+                                        <span class="usuario_hora">2023-10-15 14:30</span>
+                                    </div>
+                                    <div class="sesion_card">
+                                        <span class="usuario_nombre">María López</span>
+                                        <span class="usuario_rol">Cliente</span>
+                                        <span class="usuario_hora">2023-10-14 09:15</span>
+                                    </div>
+                                    <div class="sesion_card">
+                                        <span class="usuario_nombre">Carlos Mendoza</span>
+                                        <span class="usuario_rol">Administrador</span>
+                                        <span class="usuario_hora">2023-10-13 16:45</span>
+                                    </div>
+                                    <div class="sesion_card">
+                                        <span class="usuario_nombre">Ana Torres</span>
+                                        <span class="usuario_rol">Cliente</span>
+                                        <span class="usuario_hora">2023-10-12 11:20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="proveedores" class="content-section">
-                        <h2>Proveedores</h2>
-                        <p>Revisa y administra la información de tus proveedores.</p>
+                        <div class="box_pdr_proveedor">
+
+                            <header class="header_proveedores">
+
+                                <div>
+                                    <h1>Gestión de Proveedores</h1>
+                                    <p>
+                                        Aquí puedes registrar, modificar y administrar los proveedores de la licorería.
+                                    </p>
+                                </div>
+
+                                <div class="box_input_agg">
+
+                                    <input type="text" id="prov_nombre" placeholder="Nombre del proveedor">
+
+                                    <input type="text" id="prov_contacto" placeholder="Persona de contacto">
+
+                                    <input type="text" id="prov_telefono" placeholder="Teléfono">
+
+                                    <input type="email" id="prov_correo" placeholder="Correo electrónico">
+
+                                    <select id="prov_estado">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                    </select>
+
+                                    <div id="agg_new_proveedor">
+                                        <button id="btn_guardar_proveedor">
+                                            AGREGAR NUEVO PROVEEDOR
+                                        </button>
+                                    </div>
+
+                                    <div id="cancel_edit_proveedor" style="display: none;">
+                                        <button id="btn_cancelar_proveedor">
+                                            CANCELAR EDICIÓN
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </header>
+
+                            <div class="box_tabla_agg">
+
+                                <div class="box_buscador_proveedor">
+                                    <input type="text" id="buscar_proveedor" placeholder="Buscar proveedor por nombre...">
+                                </div>
+
+                                <table class="tabla_agg">
+
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Proveedor</th>
+                                            <th>Contacto</th>
+                                            <th>Teléfono</th>
+                                            <th>Correo</th>
+                                            <th>Entrega</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Distribuidora Central</td>
+                                            <td>Juan Pérez</td>
+                                            <td>8888-8888</td>
+                                            <td>ventas@central.com</td>
+                                            <td>3 días</td>
+                                            <td><span class="estado activo">Activo</span></td>
+                                            <td>
+                                                <button class="btn_modificar_proveedor">MODIFICAR</button>
+                                                <button class="btn_eliminar_proveedor">ELIMINAR</button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Bebidas Premium</td>
+                                            <td>María López</td>
+                                            <td>8787-8787</td>
+                                            <td>pedidos@premium.com</td>
+                                            <td>5 días</td>
+                                            <td><span class="estado activo">Activo</span></td>
+                                            <td>
+                                                <button class="btn_modificar_proveedor">MODIFICAR</button>
+                                                <button class="btn_eliminar_proveedor">ELIMINAR</button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Importadora Norte</td>
+                                            <td>Carlos Ruiz</td>
+                                            <td>8989-8989</td>
+                                            <td>norte@email.com</td>
+                                            <td>7 días</td>
+                                            <td><span class="estado inactivo">Inactivo</span></td>
+                                            <td>
+                                                <button class="btn_modificar_proveedor">MODIFICAR</button>
+                                                <button class="btn_eliminar_proveedor">ELIMINAR</button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
                     </section>
 
                     <section id="reportes" class="content-section">
-                        <h2>Reportes</h2>
-                        <p>Visualiza reportes de ventas, inventario y rendimiento.</p>
+                        <div class="box_pdr_reportes">
+                            <h1>Reportes y Estadísticas</h1>
+                            
+                            <!-- Panel de Filtros -->
+                            <div class="box_control_reportes">
+                                <div class="filtros_reportes">
+                                    <div class="input_filtro">
+                                        <label for="rep_rango_tiempo">Periodo de Tiempo</label>
+                                        <select id="rep_rango_tiempo">
+                                            <option value="hoy">Hoy</option>
+                                            <option value="semana">Esta Semana</option>
+                                            <option value="mes" selected>Este Mes</option>
+                                            <option value="total">Todo el Historial</option>
+                                        </select>
+                                    </div>
+                                    <div class="input_filtro">
+                                        <label for="rep_sucursal">Sucursal</label>
+                                        <select id="rep_sucursal">
+                                            <option value="todas">Todas las Sucursales</option>
+                                            <option value="Central">Sucursal Central</option>
+                                            <option value="Plaza">Sucursal Plaza</option>
+                                            <option value="Norte">Sucursal Norte</option>
+                                        </select>
+                                    </div>
+                                    <div class="input_filtro">
+                                        <label for="rep_cliente">Cliente</label>
+                                        <select id="rep_cliente">
+                                            <option value="todos">Todos los Clientes</option>
+                                            <option value="Juan Pérez">Juan Pérez</option>
+                                            <option value="María López">María López</option>
+                                            <option value="Ana Torres">Ana Torres</option>
+                                            <option value="Carlos Mendoza">Carlos Mendoza</option>
+                                            <option value="Carlos Ruiz">Carlos Ruiz</option>
+                                            <option value="Invitado">Invitado (General)</option>
+                                        </select>
+                                    </div>
+                                    <div class="input_filtro">
+                                        <label for="rep_tipo">Tipo de Reporte</label>
+                                        <select id="rep_tipo">
+                                            <option value="ventas">Resumen de Ventas</option>
+                                            <option value="inventario">Análisis de Inventario</option>
+                                            <option value="productos">Productos Estrella</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="box_btn_reportes">
+                                    <button id="btn_generar_reporte" class="btn_generar">
+                                        Generar Reporte
+                                    </button>
+                                    <button id="btn_exportar_pdf" class="btn_secundario_rep">
+                                        Imprimir / PDF
+                                    </button>
+                                    <button id="btn_exportar_excel" class="btn_secundario_rep">
+                                        Descargar CSV
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- KPIs -->
+                            <div class="boxs_card_reportes">
+                                <div class="card_info_reporte ingresos_rep">
+                                    <div class="icon_box_rep green">
+                                        <img src="img/dolar.png" alt="Ingresos">
+                                    </div>
+                                    <div class="card_content">
+                                        <h3>Ingresos Totales</h3>
+                                        <p id="kpi_ingresos">C$ 0.00</p>
+                                        <span id="kpi_ingresos_sub">C$ 0.00 efectivo / C$ 0.00 digital</span>
+                                    </div>
+                                </div>
+
+                                <div class="card_info_reporte ganancia_rep">
+                                    <div class="icon_box_rep violet">
+                                        <img src="img/mano.png" alt="Ganancias">
+                                    </div>
+                                    <div class="card_content">
+                                        <h3>Ganancia Estimada</h3>
+                                        <p id="kpi_ganancias">C$ 0.00</p>
+                                        <span id="kpi_ganancias_sub">Margen promedio: 0%</span>
+                                    </div>
+                                </div>
+
+                                <div class="card_info_reporte transacciones_rep">
+                                    <div class="icon_box_rep blue">
+                                        <img src="img/carrito.png" alt="Ventas">
+                                    </div>
+                                    <div class="card_content">
+                                        <h3>Transacciones</h3>
+                                        <p id="kpi_transacciones">0</p>
+                                        <span id="kpi_transacciones_sub">Ticket promedio: C$ 0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="card_info_reporte stock_rep">
+                                    <div class="icon_box_rep plomo">
+                                        <img src="img/advertencia.png" alt="Stock Bajo">
+                                    </div>
+                                    <div class="card_content">
+                                        <h3>Stock Bajo / Crítico</h3>
+                                        <p id="kpi_alertas">0</p>
+                                        <span id="kpi_alertas_sub">Productos en alerta</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Visualizaciones y Gráficos -->
+                            <div class="grid_reportes">
+                                <!-- Ventas por Categoría -->
+                                <div class="card_grafico">
+                                    <h2>Ventas por Categoría</h2>
+                                    <div class="grafico_bars_container" id="grafico_categorias">
+                                        <!-- Generado dinámicamente por JS -->
+                                    </div>
+                                </div>
+
+                                <!-- Métodos de Pago y Resumen de Ventas -->
+                                <div class="card_grafico">
+                                    <h2>Método de Pago Preferido</h2>
+                                    <div class="payment_methods_container" id="grafico_pagos">
+                                        <!-- Generado dinámicamente por JS -->
+                                    </div>
+                                </div>
+
+                                <!-- Productos más vendidos -->
+                                <div class="card_grafico spans_full">
+                                    <h2>Top 5 Productos Estrella</h2>
+                                    <div class="top_productos_container" id="grafico_top_productos">
+                                        <!-- Generado dinámicamente por JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tabla de Detalle -->
+                            <div class="box_tabla_reporte">
+                                <div class="header_tabla_reporte">
+                                    <h2 id="titulo_tabla_reporte">Detalle del Reporte</h2>
+                                    <div class="buscador_tabla_reporte">
+                                        <input type="text" id="buscar_reporte" placeholder="Buscar en el detalle...">
+                                    </div>
+                                </div>
+                                <div class="tabla_reporte_container">
+                                    <table id="tabla_reporte">
+                                        <thead id="tabla_reporte_head">
+                                            <!-- Encabezado dinámico por JS -->
+                                        </thead>
+                                        <tbody id="tabla_reporte_body">
+                                            <!-- Filas dinámicas por JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="cerrar-sesion" class="content-section">
@@ -178,395 +1508,687 @@
                         <p>Haz clic en cerrar sesión para salir del sistema.</p>
                     </section>
                     <section id="compras" class="content-section">
-                        <h2>Compras</h2>
-                        <p>Administra las compras realizadas y los pedidos a proveedores.</p>
+                        <div class="container">
+                            <div class="header">
+                                <h1>Registro de Compras (Facturas)</h1>
+                                <p>
+                                    Ingresa los detalles de la factura de compra para actualizar el inventario y calcular el costo unitario de los productos.
+                                </p>
+                            </div>
+                            <div class="form-container">
+                                <!-- Cabecera de la factura -->
+                                <div class="form-grid">
+                                    <div class="input-group">
+                                        <label for="compra_num_factura">Número de factura</label>
+                                        <input type="text" id="compra_num_factura" placeholder="FAC-0001">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="compra_fecha">Fecha</label>
+                                        <input type="date" id="compra_fecha">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="compra_usuario">Usuario (Comprador)</label>
+                                        <input type="text" id="compra_usuario" placeholder="Nombre del usuario" readonly style="background: #f1f5f9; color: #64748b; font-weight: 500; border-color: #cbd5e1;">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="compra_metodo_pago">Método de pago</label>
+                                        <select id="compra_metodo_pago">
+                                            <option value="Efectivo">Efectivo</option>
+                                            <option value="Tarjeta">Tarjeta</option>
+                                            <option value="Transferencia">Transferencia</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="compra_select_proveedor">Seleccionar Proveedor</label>
+                                        <select id="compra_select_proveedor">
+                                            <option value="">Seleccione un proveedor...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Formulario para configurar producto antes de agregar -->
+                                <div class="producto-form-container" style="background: #f8fafc; padding: 24px; border-radius: 14px; margin-bottom: 30px; border: 1px solid #e2e8f0; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+                                    <h3 style="margin-top: 0; margin-bottom: 20px; font-size: 16px; color: #0f172a; font-weight: 700; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Detalles de Producto a Ingresar</h3>
+                                    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                                        <div class="input-group autocomplete-wrapper" style="position: relative;">
+                                             <label for="compra_buscar_producto">Producto (Escribe para buscar)</label>
+                                             <input type="text" id="compra_buscar_producto" placeholder="Buscar producto..." autocomplete="off">
+                                             <input type="hidden" id="compra_select_producto_id">
+                                             <div id="compra_resultados_busqueda" class="autocomplete-results" style="display: none;"></div>
+                                         </div>
+                                        <div class="input-group">
+                                            <label for="compra_select_agrupacion">Seleccionar Agrupación</label>
+                                            <select id="compra_select_agrupacion">
+                                                <option value="Unidad" data-equiv="1">Unidad (1 ud)</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_cantidad_agrupacion">Cajas / Packs</label>
+                                            <input type="number" id="compra_cantidad_agrupacion" min="1" value="1">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_cantidad">Cantidad (Unidades)</label>
+                                            <input type="number" id="compra_cantidad" min="1" value="1">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_precio_costo">Precio Compra (C$)</label>
+                                            <input type="number" id="compra_precio_costo" min="0" step="0.01" value="0.00">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_iva">IVA (%)</label>
+                                            <input type="number" id="compra_iva" min="0" max="100" value="15">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_descuento">Descuento (C$)</label>
+                                            <input type="number" id="compra_descuento" min="0" step="0.01" value="0.00">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_bonificacion">Bonificación (Uds. gratis)</label>
+                                            <input type="number" id="compra_bonificacion" min="0" value="0">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_lote">Lote</label>
+                                            <input type="text" id="compra_lote" placeholder="Ej: LOTE-A1">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_fecha_entrega">Fecha de Entrega</label>
+                                            <input type="date" id="compra_fecha_entrega">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_fecha_caducidad">Fecha de Caducidad</label>
+                                            <input type="date" id="compra_fecha_caducidad">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="compra_margen_deseado">% Ganancia Deseada</label>
+                                            <input type="number" id="compra_margen_deseado" min="0" max="99" value="20">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Caja de visualización de Cálculos (Precio Unitario y Ganancia) -->
+                                    <div class="calc-unitario-box" style="background: #eff6ff; padding: 16px 20px; border-radius: 10px; border: 1px solid #bfdbfe; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 5px;">
+                                        <div>
+                                            <span style="font-size: 14px; color: #1e3a8a; font-weight: 700; display: block; margin-bottom: 4px;">Costo Unitario Neto:</span>
+                                            <strong id="compra_precio_unitario_calc" style="font-size: 20px; color: #1d4ed8; font-weight: 800;">C$ 0.00</strong>
+                                            <span id="compra_formula_display" style="font-size: 11px; color: #64748b; display: block; margin-top: 4px; font-style: italic;">Fórmula: ((Cant * Costo) - Desc + IVA) / (Cant + Bonif)</span>
+                                        </div>
+                                        <div style="border-left: 1px solid #bfdbfe; padding-left: 16px;">
+                                            <span style="font-size: 14px; color: #166534; font-weight: 700; display: block; margin-bottom: 4px;" id="compra_ganancia_label">Precio Venta Sugerido (20% Ganancia):</span>
+                                            <strong id="compra_ganancia_calc" style="font-size: 20px; color: #15803d; font-weight: 800;">C$ 0.00</strong>
+                                            <span id="compra_ganancia_formula" style="font-size: 11px; color: #64748b; display: block; margin-top: 4px; font-style: italic;">Fórmula: Costo Neto / (1 - %Ganancia / 100)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Acciones requeridas por el usuario -->
+                                <div class="actions" style="margin-top: 30px; display: flex; justify-content: flex-end; align-items: center; gap: 16px;">
+                                    <button id="btn_compra_agregar_prod" class="btn-save" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                                        + Agregar Producto
+                                    </button>
+                                    <button id="btn_compra_ver_factura" class="btn-save" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                                        Ver Factura
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </main>
 
         </div>
 
+        <!-- MODALS (Inlined static modal sub-containers) -->
         <div class="most_agg_produ" id="most_agg_produ">
+            <!-- Modal Crear Producto -->
+            <div class="container_new_product" id="modal_crear_producto" style="display: none;">
+                <div class="info_enca_modify">
+                    <h1>Gestión de Productos</h1>
+                    <img src="img/volver.png" alt="Volver" id="regr_new_produ" class="regr_new_produ">
+                </div>
+                <div class="container">
+                    <div class="grid">
 
+                        <!-- FORMULARIO -->
 
+                        <div class="card">
+
+                            <h2>
+                                Agregar Producto
+                            </h2>
+
+                            <form id="form_crear_producto" onsubmit="event.preventDefault();">
+
+                                <div class="form_group">
+                                    <label>Nombre del Producto</label>
+                                    <input type="text" id="crear_producto_nombre" placeholder="Ej: Cerveza Toña" required>
+                                </div>
+
+                                <div class="form_group">
+                                    <label>Precio Base (C$)</label>
+                                    <input type="number" id="crear_producto_precio" placeholder="Ej: 35" min="1" required>
+                                </div>
+
+                                <div class="form_group">
+                                    <label>Categoría</label>
+                                    <select id="crear_producto_categoria" required>
+                                        <option value="">Seleccionar</option>
+                                        <option value="Licores">Licores</option>
+                                        <option value="Cigarros">Cigarros</option>
+                                        <option value="Bebidas">Bebidas</option>
+                                        <option value="Snacks">Snacks</option>
+                                    </select>
+                                </div>
+
+                                <div class="form_group">
+                                    <label>Agrupaciones Permitidas</label>
+                                    <div class="check_container_v2" id="crear_producto_groupings">
+                                        <div class="group_item_row active">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Unidad" checked disabled>
+                                                <span>Unidad</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper" style="opacity: 1; pointer-events: auto;">
+                                                <input type="number" class="group_equiv_input" value="1" readonly style="background: #e2e8f0; border-color: #cbd5e1; color: #475569;">
+                                                <span>ud</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Paquete" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Paquete</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="12" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Six Pack" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Six Pack</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="6" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Caja" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Caja</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="24" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Cajilla" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Cajilla</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="20" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Botella" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Botella</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="1" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Media Botella" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Media Botella</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="1" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn" type="submit" id="btn_guardar_nuevo_producto">
+                                    Guardar Producto
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                        <!-- TABLA -->
+
+                        <div class="card">
+
+                            <h2>
+                                Productos Registrados
+                            </h2>
+
+                            <div class="table_container">
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Producto</th>
+                                            <th>Categoría</th>
+                                            <th>Agrupaciones</th>
+                                            <th>Ubicación</th>
+                                            <th>Acciones</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="tabla_registrados_productos_body">
+                                        <!-- Rendered dynamically by JavaScript -->
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Modal Modificar Producto -->
+            <div class="container_modify_product" id="modal_modificar_producto" style="display: none;">
+                <div class="info_enca_modify">
+                    <h1>Modificar Producto</h1>
+                    <img src="img/volver.png" alt="" id="regr_modify_produ" class="regr_modify_produ">
+                </div>
+                <div class="container">
+                    <h1 class="title">Editar Productos</h1>
+                    <div class="grid">
+                        <!-- LISTA -->
+                        <div class="card">
+                            <input type="text" class="search" id="buscar_producto_modificar" placeholder="Buscar producto...">
+                            <div class="product_list" id="modificar_producto_list">
+                                <!-- Rendered dynamically by JavaScript -->
+                            </div>
+                        </div>
+                        <!-- FORMULARIO -->
+                        <div class="card">
+                            <div class="form_container">
+                                <h2>Información del Producto</h2>
+                                <div class="form_group">
+                                    <label>Nombre del Producto</label>
+                                    <input type="text" id="modificar_producto_nombre" value="" required>
+                                </div>
+                                <div class="form_group">
+                                    <label>Precio Base (C$)</label>
+                                    <input type="number" id="modificar_producto_precio" value="" min="1" required>
+                                </div>
+                                <div class="form_group">
+                                    <label>Categoría</label>
+                                    <select id="modificar_producto_categoria" required>
+                                        <option value="Licores">Licores</option>
+                                        <option value="Cigarros">Cigarros</option>
+                                        <option value="Bebidas">Bebidas</option>
+                                        <option value="Snacks">Snacks</option>
+                                    </select>
+                                </div>
+                                <div class="form_group">
+                                    <label>Agrupaciones Permitidas</label>
+                                    <div class="group_container_v2" id="modificar_producto_groupings">
+                                        <div class="group_item_row active">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Unidad" checked disabled>
+                                                <span>Unidad</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper" style="opacity: 1; pointer-events: auto;">
+                                                <input type="number" class="group_equiv_input" value="1" readonly style="background: #e2e8f0; border-color: #cbd5e1; color: #475569;">
+                                                <span>ud</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Paquete" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Paquete</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="12" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Six Pack" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Six Pack</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="6" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Caja" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Caja</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="24" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Cajilla" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Cajilla</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="20" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Botella" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Botella</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="1" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                        <div class="group_item_row">
+                                            <label class="group_label">
+                                                <input type="checkbox" data-group="Media Botella" onchange="this.closest('.group_item_row').classList.toggle('active', this.checked)">
+                                                <span>Media Botella</span>
+                                            </label>
+                                            <div class="equiv_input_wrapper">
+                                                <span>Contiene:</span>
+                                                <input type="number" class="group_equiv_input" value="1" min="1">
+                                                <span>uds</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form_group">
+                                    <label>Ubicación</label>
+                                    <select id="modificar_producto_ubicacion">
+                                        <option value="Bodega A">Bodega A</option>
+                                        <option value="Bodega B">Bodega B</option>
+                                        <option value="Refrigerador">Refrigerador</option>
+                                        <option value="Vitrina">Vitrina</option>
+                                    </select>
+                                </div>
+                                <div class="buttons">
+                                    <button class="btn btn_save" id="btn_guardar_modificacion_producto">Guardar Cambios</button>
+                                    <button class="btn btn_delete" id="btn_eliminar_producto">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Ver Ventas -->
+            <div class="contenedor-venta" id="modal_ver_ventas" style="display: none;">
+                <div class="encabezado">
+                    <div>
+                        <h1>Venta Número 1</h1>
+                        <p>Detalle completo de la venta realizada</p>
+                    </div>
+                    <img src="img/volver.png" alt="Volver" class="vol_v_venta" id="vol_v_venta">
+                </div>
+                <div class="info-venta">
+                    <div class="card-info_venta">
+                        <div class="titulo-info">Monto Total</div>
+                        <div class="valor-info">$250.00</div>
+                    </div>
+                    <div class="card-info_venta">
+                        <div class="titulo-info">Con cuánto pagó</div>
+                        <div class="valor-info">$300.00</div>
+                    </div>
+                    <div class="card-info_venta">
+                        <div class="titulo-info">Vuelto</div>
+                        <div class="valor-info">$50.00</div>
+                    </div>
+                    <div class="card-info_venta">
+                        <div class="titulo-info">Fecha</div>
+                        <div class="valor-info" style="font-size:18px;">14/05/2026</div>
+                    </div>
+                    <div class="card-info_venta">
+                        <div class="titulo-info">Forma de pago</div>
+                        <div class="valor-info" style="font-size:18px;">Efectivo</div>
+                    </div>
+                </div>
+                <div class="tabla_contenedor">
+                    <h2 class="titulo-tabla">Productos de la Venta</h2>
+                    <div class="tabla-venta">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Cervezas </td>
+                                    <td>2</td>
+                                    <td>$50.00</td>
+                                    <td>$100.00</td>
+                                    <td><span class="estado">Entregado</span></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Cervezas </td>
+                                    <td>2</td>
+                                    <td>$50.00</td>
+                                    <td>$100.00</td>
+                                    <td><span class="estado">Entregado</span></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Cervezas </td>
+                                    <td>2</td>
+                                    <td>$50.00</td>
+                                    <td>$100.00</td>
+                                    <td><span class="estado">Entregado</span></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Cervezas </td>
+                                    <td>2</td>
+                                    <td>$50.00</td>
+                                    <td>$100.00</td>
+                                    <td><span class="estado">Entregado</span></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Cervezas </td>
+                                    <td>2</td>
+                                    <td>$50.00</td>
+                                    <td>$100.00</td>
+                                    <td><span class="estado">Entregado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="caja-total"></div>
+            </div>
+
+            <!-- Modal Crear Usuario -->
+            <div class="container_new_user" id="modal_crear_usuario" style="display: none;">
+                <div class="info_enca_modify">
+                    <h1>Crear Usuario</h1>
+                    <img src="img/volver.png" alt="Volver" id="regr_crear_usuario" class="regr_crear_usuario">
+                </div>
+                <div class="container">
+                    <form method="POST" class="form_user_body" onsubmit="event.preventDefault();">
+                        <h2>Información del Usuario</h2>
+                        
+                        <div class="form_group">
+                            <label for="reg_nombre">Nombre Completo</label>
+                            <input type="text" id="reg_nombre" placeholder="Ej: Juan Pérez" required>
+                        </div>
+
+                        <div class="form_group">
+                            <label for="reg_usuario">Usuario</label>
+                            <input type="text" id="reg_usuario" placeholder="Ej: juanp" required>
+                        </div>
+
+                        <div class="form_group">
+                            <label for="reg_contrasena">Contraseña</label>
+                            <input type="password" id="reg_contrasena" placeholder="Contraseña de acceso" required>
+                        </div>
+
+                        <div class="form_group">
+                            <label for="reg_rol">Asignar Rol</label>
+                            <select id="reg_rol">
+                                <option value="Administrador">Administrador</option>
+                                <option value="Cliente">Cliente</option>
+                            </select>
+                        </div>
+
+                        <div class="buttons">
+                            <button type="submit" class="btn_save" id="btn_guardar_usuario">Guardar Usuario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal Ver Factura Compra -->
+            <div class="contenedor-venta" id="modal_ver_factura_compra" style="display: none;">
+                <div class="encabezado">
+                    <div>
+                        <h1>Factura de Compra</h1>
+                        <p>Detalle de productos agregados a esta factura</p>
+                    </div>
+                    <img src="img/volver.png" alt="Volver" class="vol_v_compra" id="vol_v_compra">
+                </div>
+                <!-- Información General de la Factura de Compra -->
+                <div class="info-factura-compra" style="padding: 15px 25px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                    <div>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase;">N° Factura</span>
+                        <strong id="ver_compra_num_factura" style="display: block; font-size: 15px; color: #0f172a;">-</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase;">Fecha</span>
+                        <strong id="ver_compra_fecha" style="display: block; font-size: 15px; color: #0f172a;">-</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase;">Proveedor</span>
+                        <strong id="ver_compra_proveedor" style="display: block; font-size: 15px; color: #0f172a;">-</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase;">Comprador</span>
+                        <strong id="ver_compra_usuario" style="display: block; font-size: 15px; color: #0f172a;">-</strong>
+                    </div>
+                    <div>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase;">Método de Pago</span>
+                        <strong id="ver_compra_metodo_pago" style="display: block; font-size: 15px; color: #0f172a;">-</strong>
+                    </div>
+                </div>
+                <div class="tabla_contenedor" style="padding: 25px;">
+                    <div class="tabla-venta" style="max-height: 400px;">
+                        <table id="compra_tabla_productos">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Bonif.</th>
+                                    <th>Costo Compra</th>
+                                    <th>Descuento</th>
+                                    <th>Lote</th>
+                                    <th>F. Entrega</th>
+                                    <th>F. Caducidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Subtotal Neto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="compra_tabla_body">
+                                <tr id="compra_tabla_vacia">
+                                    <td colspan="10" style="text-align: center; color: #64748b; padding: 24px; font-weight: 500;">
+                                        No hay productos agregados a esta factura de compra.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Totales y Acciones dentro del modal -->
+                <div style="padding: 0 25px 25px 25px; display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Totales -->
+                    <div class="totals" style="display: flex; justify-content: flex-end;">
+                        <div class="total-box" style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; display: flex; gap: 24px; align-items: center;">
+                            <div class="total-item" style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Subtotal Neto</span>
+                                <strong id="compra_subtotal_factura" style="font-size: 16px; color: #0f172a; font-weight: 700;">C$ 0.00</strong>
+                            </div>
+                            <div class="total-item" style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <span style="font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">IVA Total</span>
+                                <strong id="compra_iva_factura" style="font-size: 16px; color: #0f172a; font-weight: 700;">C$ 0.00</strong>
+                            </div>
+                            <div class="total-item grand-total" style="display: flex; flex-direction: column; align-items: flex-end; border-left: 1px solid #cbd5e1; padding-left: 24px;">
+                                <span style="font-size: 11px; color: #1e3a8a; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Total Factura</span>
+                                <strong id="compra_total_factura" style="font-size: 22px; color: #1d4ed8; font-weight: 800;">C$ 0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Acciones -->
+                    <div class="actions" style="display: flex; justify-content: space-between; align-items: center; gap: 16px;">
+                        <button id="btn_compra_eliminar_prod" class="btn-print" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; opacity: 0.5;" disabled>
+                            Eliminar Producto Seleccionado
+                        </button>
+                        <button id="btn_compra_editar_factura" class="btn-save" style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                            Editar Factura
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-
         <div class="most_aviso" id="most_aviso">
-
+            <div class="box_aviso_padre">
+                <div class="box_aviso_hijo">
+                    <h1>desea salir de este apartado?</h1>
+                    <div class="box_buton">
+                        <button id="btn_aceptar" class="btn_aceptar">Aceptar</button>
+                        <button id="btn_cancelar" class="btn_cancel">Cancelar</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
-    <script>
-        // ELEMENTOS
-        const sidebar = document.getElementById("sidebar");
-        const btnSidebar = document.getElementById("btnMenuSidebar");
-        const btnHeader = document.getElementById("btnMenuHeader");
-        const navButtons = document.querySelectorAll(".nav_button[data-section]");
-        const sections = document.querySelectorAll(".content-section");
-
-        const productosContainer = document.getElementById("productos");
-        const ventasContainer = document.getElementById("ventas");
-        const mostAggProdu = document.getElementById("most_agg_produ");
-        const mostAviso = document.getElementById("most_aviso");
-
-        // ESTADO
-        let ventaCargada = false;
-        let estilosCargados = false;
-
-        // =========================
-        // FUNCIONES GENERALES
-        // =========================
-
-        const toggleSidebar = () => {
-            sidebar.classList.toggle("expanded");
-        };
-
-        const showSection = (sectionId) => {
-            sections.forEach(section =>
-                section.classList.toggle("active", section.id === sectionId)
-            );
-
-            if (sectionId !== "inicio") {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                document.querySelector("main")
-                    ?.scrollTo({ top: 0, behavior: "smooth" });
-            }
-        };
-
-        const setActiveButton = (clickedButton) => {
-            navButtons.forEach(btn =>
-                btn.classList.toggle("active", btn === clickedButton)
-            );
-        };
-
-        const cargarHTML = async (url, containerId) => {
-            try {
-                const response = await fetch(url);
-                const html = await response.text();
-
-                document.getElementById(containerId).innerHTML = html;
-            } catch (error) {
-                console.error(`❌ Error cargando ${url}`, error);
-            }
-        };
-
-        // =========================
-        // CARGAR ESTILOS
-        // =========================
-
-        const cargarEstilos = (url) => {
-            return new Promise((resolve, reject) => {
-
-                if (document.querySelector(`link[href*="${url}"]`)) {
-                    return resolve();
-                }
-
-                const link = document.createElement("link");
-
-                link.rel = "stylesheet";
-                link.href = url;
-
-                link.onload = resolve;
-                link.onerror = reject;
-
-                document.head.appendChild(link);
-            });
-        };
-
-        // =========================
-        // CARGAR PUNTO DE VENTA
-        // =========================
-
-        const cargarVentaSeccion = async (url, contenedorId) => {
-
-            if (ventaCargada) {
-                console.log("✅ Punto de venta ya cargado");
-                return;
-            }
-
-            try {
-
-                if (!estilosCargados) {
-                    await cargarEstilos("style.css");
-                    estilosCargados = true;
-                }
-
-                const response = await fetch(`${url}?t=${Date.now()}`);
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const html = await response.text();
-
-                const temp = document.createElement("div");
-                temp.innerHTML = html;
-
-                const scripts = [...temp.querySelectorAll("script")];
-
-                scripts.forEach(script => script.remove());
-
-                document.getElementById(contenedorId).innerHTML = temp.innerHTML;
-
-                for (const oldScript of scripts) {
-
-                    if (oldScript.src) {
-
-                        const existe = document.querySelector(
-                            `script[src*="${oldScript.src}"]`
-                        );
-
-                        if (!existe) {
-                            await new Promise((resolve, reject) => {
-
-                                const script = document.createElement("script");
-
-                                script.src = oldScript.src;
-                                script.onload = resolve;
-                                script.onerror = reject;
-
-                                document.body.appendChild(script);
-                            });
-                        }
-
-                    } else {
-
-                        const script = document.createElement("script");
-
-                        script.textContent = `
-                        (() => {
-                            ${oldScript.textContent}
-                        })();
-                    `;
-
-                        document.body.appendChild(script);
-                    }
-                }
-
-                ventaCargada = true;
-
-                console.log("✅ venta.html cargado correctamente");
-
-            } catch (error) {
-
-                document.getElementById(contenedorId).innerHTML =
-                    "<p style='color:red'>❌ Error cargando la sección de venta</p>";
-
-                console.error("❌ Error:", error);
-            }
-        };
-
-        // =========================
-        // MODAL PRODUCTO
-        // =========================
-
-        const openMostAggProdu = () => {
-            mostAggProdu.classList.add("open");
-            document.body.style.overflow = "hidden";
-        };
-
-        const closeMostAggProdu = () => {
-            mostAggProdu.classList.remove("open");
-            document.body.style.overflow = "";
-        };
-
-        // =========================
-        // MODAL AVISO
-        // =========================
-
-        const openMostAviso = () => {
-            mostAviso.classList.add("open");
-            document.body.style.overflow = "hidden";
-        };
-
-        const closeMostAviso = () => {
-            mostAviso.classList.remove("open");
-            document.body.style.overflow = "";
-        };
-
-        // =========================
-        // NAVEGACIÓN
-        // =========================
-
-        navButtons.forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                const sectionId = button.dataset.section;
-
-                showSection(sectionId);
-                setActiveButton(button);
-
-                if (sectionId === "punto-venta") {
-                    cargarVentaSeccion(
-                        "venta/venta.html",
-                        "punto-venta"
-                    );
-                }
-            });
-        });
-
-
-
-
-
-        // =========================
-        // CARGAS INICIALES
-        // =========================
-
-        cargarHTML("dash/index.html", "dash_container");
-        cargarHTML("card_info/index.html", "card_box");
-        cargarHTML("inventario/index.html", "box_inventario");
-        cargarHTML("gestion_producto/index.html", "productos");
-        cargarHTML("est_venta/index.html", "ventas");
-        cargarHTML("aviso_emer/index.html", "most_aviso");
-        cargarHTML("clientes/index.html", "clientes");
-
-        const cargarModalProducto = async (url) => {
-            try {
-                const response = await fetch(`${url}?t=${Date.now()}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const html = await response.text();
-                const temp = document.createElement("div");
-                temp.innerHTML = html;
-
-                const scripts = [...temp.querySelectorAll("script")];
-                scripts.forEach(script => script.remove());
-                mostAggProdu.innerHTML = temp.innerHTML;
-
-                for (const oldScript of scripts) {
-                    if (oldScript.src) {
-                        const existe = document.querySelector(
-                            `script[src*="${oldScript.src}"]`
-                        );
-
-                        if (!existe) {
-                            await new Promise((resolve, reject) => {
-                                const script = document.createElement("script");
-                                script.src = oldScript.src;
-                                script.onload = resolve;
-                                script.onerror = reject;
-                                document.body.appendChild(script);
-                            });
-                        }
-                    } else {
-                        const script = document.createElement("script");
-                        script.textContent = `(() => { ${oldScript.textContent} })();`;
-                        document.body.appendChild(script);
-                    }
-                }
-
-                openMostAggProdu();
-            } catch (error) {
-                mostAggProdu.innerHTML = "<p style='color:red'>❌ Error cargando el modal</p>";
-                console.error("❌ Error cargando modal", error);
-            }
-        };
-
-        // =========================
-        // EVENTOS PRODUCTO
-        // =========================
-
-        productosContainer?.addEventListener("click", (event) => {
-
-            const clicked = event.target.closest("#agg_new_prod");
-            const modify = event.target.closest("#btn_modi_gestion");
-
-            if (clicked) {
-                event.preventDefault();
-                return cargarModalProducto("crear_producto/index.html");
-            }
-
-            if (modify) {
-                event.preventDefault();
-                return cargarModalProducto("modificar_producto/index.html");
-            }
-        });
-
-        ventasContainer?.addEventListener("click", (event) => {
-            const viewVenta = event.target.closest("#slct_vent");
-
-            if (viewVenta) {
-                event.preventDefault();
-                return cargarModalProducto("ver_ventas/index.html");
-            }
-        });
-
-        document.addEventListener("click", (event) => {
-
-            const target = event.target;
-
-            const closeButton = target.closest("#regr_new_produ");
-            const modifyButton = target.closest("#regr_modify_produ");
-            const verVentasClose = target.closest("#vol_v_venta");
-            const btnAceptar = target.closest("#btn_aceptar");
-            const btnCancelar = target.closest("#btn_cancelar");
-
-            // Abrir modal aviso
-            if (closeButton || modifyButton || verVentasClose) {
-                event.preventDefault();
-                return openMostAviso();
-            }
-
-            // Cerrar modal producto
-            if (modifyButton) {
-                event.preventDefault();
-                return closeMostAggProdu();
-            }
-
-            // Cerrar modal aviso
-            if (btnCancelar) {
-                event.preventDefault();
-                return closeMostAviso();
-            }
-
-
-            if (btnAceptar) {
-                event.preventDefault();
-                return closeMostAviso(), closeMostAggProdu();
-            }
-            // Cerrar al hacer click fuera
-            if (
-                mostAggProdu.classList.contains("open") &&
-                target === mostAggProdu
-            ) {
-                closeMostAggProdu();
-            }
-
-            if (
-                mostAviso.classList.contains("open") &&
-                target === mostAviso
-            ) {
-                closeMostAviso();
-            }
-
-            // Cerrar sidebar fuera
-            const insideSidebar = sidebar.contains(target);
-            const clickBtn =
-                btnSidebar?.contains(target) ||
-                btnHeader?.contains(target);
-
-            if (
-                !insideSidebar &&
-                !clickBtn &&
-                sidebar.classList.contains("expanded")
-            ) {
-                sidebar.classList.remove("expanded");
-            }
-        });
-
-        // =========================
-        // BOTONES SIDEBAR
-        // =========================
-
-        btnSidebar?.addEventListener("click", toggleSidebar);
-        btnHeader?.addEventListener("click", toggleSidebar);
-
-    </script>
+    <script src="file_js/venta.js"></script>
+    <script src="file_js/reportes.js"></script>
+    <script src="file_js/precios_agrupacion.js"></script>
+    <script src="file_js/arqueo.js"></script>
+    <script src="file_js/back.js"></script>
+    <script src="file_js/compras.js"></script>
 </body>
 
 </html>
