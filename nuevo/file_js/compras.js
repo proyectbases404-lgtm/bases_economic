@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const btnAgregarProd = document.getElementById("btn_compra_agregar_prod");
     const btnEliminarProd = document.getElementById("btn_compra_eliminar_prod");
+    const btnEditarProdSel = document.getElementById("btn_compra_editar_prod_sel");
     const btnEditarFactura = document.getElementById("btn_compra_editar_factura");
     const btnVerFactura = document.getElementById("btn_compra_ver_factura");
 
@@ -329,6 +330,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </tr>
             `;
             actualizarTotalesFactura(0, 0, 0);
+            if (btnEliminarProd) {
+                btnEliminarProd.disabled = true;
+                btnEliminarProd.style.opacity = "0.5";
+            }
+            if (btnEditarProdSel) {
+                btnEditarProdSel.disabled = true;
+                btnEditarProdSel.style.opacity = "0.5";
+            }
             return;
         }
 
@@ -376,15 +385,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Si ya está seleccionado, deseleccionar
                     selectedItemIndex = null;
                     row.classList.remove("selected");
-                    btnEliminarProd.disabled = true;
-                    btnEliminarProd.style.opacity = "0.5";
+                    if (btnEliminarProd) {
+                        btnEliminarProd.disabled = true;
+                        btnEliminarProd.style.opacity = "0.5";
+                    }
+                    if (btnEditarProdSel) {
+                        btnEditarProdSel.disabled = true;
+                        btnEditarProdSel.style.opacity = "0.5";
+                    }
                 } else {
                     // Seleccionar la fila
                     selectedItemIndex = index;
                     rows.forEach(r => r.classList.remove("selected"));
                     row.classList.add("selected");
-                    btnEliminarProd.disabled = false;
-                    btnEliminarProd.style.opacity = "1";
+                    if (btnEliminarProd) {
+                        btnEliminarProd.disabled = false;
+                        btnEliminarProd.style.opacity = "1";
+                    }
+                    if (btnEditarProdSel) {
+                        btnEditarProdSel.disabled = false;
+                        btnEditarProdSel.style.opacity = "1";
+                    }
                     
                     // Cargar valores de la fila en el formulario para facilitar edición/visualización
                     cargarItemEnFormulario(compraItems[index]);
@@ -517,6 +538,10 @@ document.addEventListener("DOMContentLoaded", () => {
             btnEliminarProd.disabled = true;
             btnEliminarProd.style.opacity = "0.5";
         }
+        if (btnEditarProdSel) {
+            btnEditarProdSel.disabled = true;
+            btnEditarProdSel.style.opacity = "0.5";
+        }
     });
 
     // 7. Botón: Eliminar Producto Seleccionado
@@ -537,6 +562,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
             btnEliminarProd.disabled = true;
             btnEliminarProd.style.opacity = "0.5";
+            if (btnEditarProdSel) {
+                btnEditarProdSel.disabled = true;
+                btnEditarProdSel.style.opacity = "0.5";
+            }
+        }
+    });
+
+    // 7.5 Botón: Editar Producto Seleccionado
+    btnEditarProdSel?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (selectedItemIndex === null) {
+            alert("Por favor, selecciona un producto de la tabla primero haciendo clic en su fila.");
+            return;
+        }
+
+        const itemAEditar = compraItems[selectedItemIndex];
+        cargarItemEnFormulario(itemAEditar);
+        
+        // Remover el item de la lista para que al guardarlo de nuevo no se duplique
+        compraItems.splice(selectedItemIndex, 1);
+        selectedItemIndex = null;
+
+        renderTablaItems();
+
+        if (btnEliminarProd) {
+            btnEliminarProd.disabled = true;
+            btnEliminarProd.style.opacity = "0.5";
+        }
+        if (btnEditarProdSel) {
+            btnEditarProdSel.disabled = true;
+            btnEditarProdSel.style.opacity = "0.5";
+        }
+
+        // Cerrar modal
+        if (window.closeMostAggProdu) {
+            window.closeMostAggProdu();
         }
     });
 
@@ -609,6 +671,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.setItem("facturasCompras", JSON.stringify(facturasGuardadas));
 
+        // Actualizar el historial de compras en la UI inmediatamente
+        if (typeof cargarComprasRealizadas === "function") {
+            cargarComprasRealizadas();
+        }
+
         // Limpiar formulario completo de factura
         if (numFacturaInput) numFacturaInput.value = "";
         if (selectProveedor) selectProveedor.value = "";
@@ -644,6 +711,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (verProveedor) verProveedor.textContent = proveedorVal;
         if (verUsuario) verUsuario.textContent = usuarioVal;
         if (verMetodo) verMetodo.textContent = metodoPagoVal;
+
+        // Cambiar dinámicamente el texto del botón de guardar en el modal
+        if (btnEditarFactura) {
+            let facturasGuardadas = [];
+            const localData = localStorage.getItem("facturasCompras");
+            if (localData) {
+                try {
+                    facturasGuardadas = JSON.parse(localData);
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+            const existe = facturasGuardadas.some(f => f.numFactura === numFacturaVal);
+            btnEditarFactura.textContent = existe ? "Guardar Cambios" : "Guardar Factura";
+        }
 
         if (window.mostrarModal) {
             window.mostrarModal("modal_ver_factura_compra");
@@ -683,12 +765,220 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Tab switching for compras section
+    const comprasTabButtons = document.querySelectorAll(".tab_compras_btn");
+    const tabRegistro = document.getElementById("tab_registro_compras");
+    const tabHistorial = document.getElementById("tab_historial_compras");
+
+    comprasTabButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            comprasTabButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const tab = btn.dataset.tab;
+            if (tab === "registro-compras") {
+                if (tabRegistro) tabRegistro.style.display = "block";
+                if (tabHistorial) tabHistorial.style.display = "none";
+            } else {
+                if (tabRegistro) tabRegistro.style.display = "none";
+                if (tabHistorial) tabHistorial.style.display = "block";
+                cargarComprasRealizadas();
+            }
+        });
+    });
+
+    function cargarComprasRealizadas() {
+        const tbody = document.getElementById("tabla_compras_realizadas_body");
+        if (!tbody) return;
+
+        const facturas = JSON.parse(localStorage.getItem("facturasCompras")) || [];
+
+        if (facturas.length === 0) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="8" style="text-align: center; color: #64748b; padding: 24px; font-weight: 500;">
+                        No hay facturas de compra registradas.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        tbody.innerHTML = facturas.map(compra => {
+            const estado = compra.estado || "Registrada";
+            const badgeStyle = estado === "Anulada" 
+                ? "background: #fee2e2; color: #b91c1c;" 
+                : "background: #dcfce7; color: #15803d;";
+            
+            return `
+                <tr style="border-bottom: 1px solid #cbd5e1;">
+                    <td style="padding: 12px;"><strong>${compra.numFactura}</strong></td>
+                    <td style="padding: 12px;">${compra.fecha}</td>
+                    <td style="padding: 12px;">${compra.proveedor || "Ninguno"}</td>
+                    <td style="padding: 12px;">${compra.usuario || "-"}</td>
+                    <td style="padding: 12px;">${compra.metodoPago || "-"}</td>
+                    <td style="padding: 12px; font-weight: bold; color: #10b981;">C$ ${(compra.total || 0).toFixed(2)}</td>
+                    <td style="padding: 12px;"><span class="badge_pct" style="${badgeStyle}">${estado}</span></td>
+                    <td style="padding: 12px; text-align: center;">
+                        <button onclick="window.mostrarDetallesCompra('${compra.numFactura}')" style="background: #eff6ff; color: #2563eb; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 600; cursor: pointer;">Observar compra</button>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+    window.cargarComprasRealizadas = cargarComprasRealizadas;
+
+    document.getElementById("buscar_compra_historial")?.addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const rows = document.querySelectorAll("#tabla_compras_realizadas_body tr");
+        rows.forEach(row => {
+            if (row.cells.length === 1) return;
+            let match = false;
+            Array.from(row.cells).forEach(cell => {
+                if (cell.textContent.toLowerCase().includes(query)) match = true;
+            });
+            row.style.display = match ? "" : "none";
+        });
+    });
+
     // Escuchar cuando el usuario hace clic en el apartado de compras para ocultar resultados de búsqueda y recargar proveedores
     document.querySelector('.nav_button[data-section="compras"]')?.addEventListener('click', () => {
         if (resultadosBusqueda) resultadosBusqueda.style.display = "none";
         popularProveedoresSelect();
+        cargarComprasRealizadas();
     });
 
     // Carga inicial al iniciar la app
     inicializarValores();
+    cargarComprasRealizadas();
 });
+
+// ==========================================
+// OBSERVACIÓN Y ANULACIÓN DE COMPRAS HISTORIAL
+// ==========================================
+window.mostrarDetallesCompra = function(facturaId) {
+    const facturas = JSON.parse(localStorage.getItem("facturasCompras")) || [];
+    const compra = facturas.find(c => c.numFactura === facturaId);
+    if (!compra) {
+        alert("No se encontró la factura de compra especificada.");
+        return;
+    }
+
+    // Actualizar campos principales
+    document.getElementById("ver_compra_titulo").textContent = `Compra Número ${compra.numFactura}`;
+    document.getElementById("det_compra_num_factura").textContent = compra.numFactura;
+    document.getElementById("det_compra_fecha").textContent = compra.fecha;
+    document.getElementById("det_compra_proveedor").textContent = compra.proveedor || "Ninguno";
+    document.getElementById("det_compra_usuario").textContent = compra.usuario || "-";
+    document.getElementById("det_compra_metodo_pago").textContent = compra.metodoPago || "Efectivo";
+
+    // Cargar tabla de productos de la compra
+    const tbody = document.getElementById("det_compra_tabla_body");
+    if (tbody) {
+        tbody.innerHTML = "";
+        let rowsHTML = "";
+        if (compra.items && compra.items.length > 0) {
+            compra.items.forEach(item => {
+                const agrupacionText = item.agrupacion && item.agrupacion !== "Unidad"
+                    ? `${item.cantidad} (${item.cantidadAgrupacion} ${item.agrupacion})`
+                    : `${item.cantidad}`;
+
+                rowsHTML += `
+                    <tr>
+                        <td><strong>${item.nombre}</strong></td>
+                        <td>${agrupacionText}</td>
+                        <td>${item.bonificacion || 0}</td>
+                        <td>C$ ${(item.costo || 0).toFixed(2)}</td>
+                        <td>C$ ${(item.descuento || 0).toFixed(2)}</td>
+                        <td><span class="badge" style="background: #e2e8f0; color: #475569;">${item.lote || "N/A"}</span></td>
+                        <td>${item.fechaEntrega || "-"}</td>
+                        <td><span style="color: #ef4444; font-weight: 500;">${item.fechaCaducidad || "Sin venc."}</span></td>
+                        <td style="font-weight: bold; color: #2563eb;">C$ ${(item.precioUnitario || 0).toFixed(2)}</td>
+                        <td style="font-weight: bold; color: #10b981;">C$ ${(item.subtotalNeto || 0).toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+        } else {
+            rowsHTML = `
+                <tr>
+                    <td colspan="10" style="text-align: center; color: #64748b; padding: 20px;">No hay información detallada de productos.</td>
+                </tr>
+            `;
+        }
+        tbody.innerHTML = rowsHTML;
+    }
+
+    // Totales
+    document.getElementById("det_compra_subtotal").textContent = `C$ ${(compra.subtotal || 0).toFixed(2)}`;
+    document.getElementById("det_compra_iva").textContent = `C$ ${(compra.iva || 0).toFixed(2)}`;
+    document.getElementById("det_compra_total").textContent = `C$ ${(compra.total || 0).toFixed(2)}`;
+
+    // Configurar estado del botón Anular
+    const btnAnular = document.getElementById("btn_anular_compra_modal");
+    if (btnAnular) {
+        const solicitudes = JSON.parse(localStorage.getItem("solicitudesAnulacion")) || [];
+        const solicitudCompra = solicitudes.find(s => s.ventaId === facturaId && s.tipo === "Compra");
+        
+        btnAnular.disabled = false;
+        btnAnular.style.opacity = "1";
+        btnAnular.style.cursor = "pointer";
+
+        if (compra.estado === "Anulada") {
+            btnAnular.disabled = true;
+            btnAnular.style.background = "#94a3b8"; // gris neutral
+            btnAnular.style.opacity = "0.7";
+            btnAnular.style.cursor = "not-allowed";
+            btnAnular.querySelector("span").textContent = "Compra Anulada";
+        } else if (solicitudCompra && solicitudCompra.estado === "Pendiente") {
+            btnAnular.disabled = true;
+            btnAnular.style.background = "#eab308"; // amarillo
+            btnAnular.style.opacity = "0.7";
+            btnAnular.style.cursor = "not-allowed";
+            btnAnular.querySelector("span").textContent = "Anulación Pendiente";
+        } else {
+            btnAnular.style.background = "linear-gradient(135deg, #ef4444, #dc2626)"; // rojo
+            btnAnular.querySelector("span").textContent = "Anular Compra";
+            
+            btnAnular.onclick = () => {
+                window.abrirSolicitudAnulacionCompra(facturaId);
+            };
+        }
+    }
+
+    window.mostrarModal("modal_ver_compras");
+};
+
+window.abrirSolicitudAnulacionCompra = function(facturaId) {
+    window.activeAnulacionTipo = "Compra";
+
+    document.getElementById("anulacion_motivo").value = "";
+    document.getElementById("anulacion_venta_id").value = facturaId;
+
+    // Cargar administradores en el select
+    const selectAdmin = document.getElementById("anulacion_admin");
+    if (selectAdmin) {
+        selectAdmin.innerHTML = "";
+
+        const optCarmelo = document.createElement("option");
+        optCarmelo.value = "Carmelo";
+        optCarmelo.textContent = "Carmelo (Administrador Principal)";
+        selectAdmin.appendChild(optCarmelo);
+
+        const userRows = document.querySelectorAll("#tabla_usuarios_body tr");
+        userRows.forEach(row => {
+            const cells = row.cells;
+            if (cells && cells.length >= 5) {
+                const nombre = cells[0].textContent.trim();
+                const rolText = cells[3].textContent.trim();
+                if (rolText.toLowerCase().includes("admin") && nombre.toLowerCase() !== "carmelo") {
+                    const opt = document.createElement("option");
+                    opt.value = nombre;
+                    opt.textContent = `${nombre} (Administrador)`;
+                    selectAdmin.appendChild(opt);
+                }
+            }
+        });
+    }
+
+    window.mostrarModal("modal_solicitar_anulacion");
+};

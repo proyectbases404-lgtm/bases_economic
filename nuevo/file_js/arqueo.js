@@ -58,6 +58,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let totalVentasEfectivo = 350.00; // Monto base por defecto
 
+    function cargarVentasRealizadas() {
+        const tbody = document.querySelector("#tabla_ventas_realizadas tbody");
+        if (!tbody) return;
+
+        let ventas = JSON.parse(localStorage.getItem("ventasSistema")) || [];
+        if (ventas.length === 0 && typeof REPORT_DATABASE !== 'undefined') {
+            ventas = [...REPORT_DATABASE.ventas];
+            localStorage.setItem("ventasSistema", JSON.stringify(ventas));
+        }
+
+        tbody.innerHTML = ventas.map(venta => {
+            const estado = venta.estado || "Completada";
+            const isAnulada = (estado === "Anulada");
+            const strikeStyle = isAnulada ? "text-decoration: line-through; opacity: 0.6;" : "";
+            
+            // Format total
+            const totalVal = (typeof venta.total === 'number') ? `C$ ${venta.total.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : venta.total;
+            
+            let badgeHTML = "";
+            if (isAnulada) {
+                badgeHTML = `<span style="background: #fee2e2; color: #b91c1c; font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">Anulada</span>`;
+            }
+
+            return `
+                <tr data-pago="${venta.metodoPago}" data-status="${estado}" style="${strikeStyle}">
+                    <td><strong>${venta.id}</strong></td>
+                    <td>${venta.fecha}</td>
+                    <td style="color: ${isAnulada ? '#94a3b8' : 'green'}; font-weight: bold;">${totalVal}${badgeHTML}</td>
+                    <td>${venta.metodoPago}</td>
+                    <td>${venta.vendedor}</td>
+                    <td>
+                        <button class="btn_observar_v" onclick="window.mostrarDetallesVenta('${venta.id}')">Observar venta</button>
+                    </td>
+                </tr>
+            `;
+        }).join("");
+    }
+    window.cargarVentasRealizadas = cargarVentasRealizadas;
+
     // Función para calcular dinámicamente las ventas en efectivo del día basándose en la tabla de ventas
     function recalcularVentasEfectivo() {
         const rows = tablaVentas?.querySelectorAll("tbody tr");
@@ -66,11 +105,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let total = 0;
         rows.forEach(row => {
             const pagoAttr = row.getAttribute("data-pago");
+            const statusAttr = row.getAttribute("data-status");
+            // Ignorar si está anulada
+            if (statusAttr === "Anulada") return;
+
             // Se suman las ventas cuyo método de pago sea Efectivo
             if (pagoAttr === "Efectivo") {
                 const amountCell = row.cells[2];
                 if (amountCell) {
-                    const amountText = amountCell.textContent.replace("C$", "").replace(/,/g, "").trim();
+                    const amountText = amountCell.textContent.replace("Anulada", "").replace("C$", "").replace(/,/g, "").trim();
                     const amount = parseFloat(amountText) || 0;
                     total += amount;
                 }
@@ -89,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const kpiCant = document.getElementById("ventas_hoy_cant");
         if (kpiCant) {
-            const cashRowsCount = Array.from(rows).filter(r => r.getAttribute("data-pago") === "Efectivo").length;
+            const cashRowsCount = Array.from(rows).filter(r => r.getAttribute("data-pago") === "Efectivo" && r.getAttribute("data-status") !== "Anulada").length;
             kpiCant.textContent = `${cashRowsCount} Venta${cashRowsCount !== 1 ? 's' : ''} realizada${cashRowsCount !== 1 ? 's' : ''}`;
         }
     }
@@ -102,8 +145,20 @@ document.addEventListener("DOMContentLoaded", () => {
             displayMontoInicial.textContent = `C$ ${inicial.toFixed(2)}`;
         }
 
-        // Efectivo esperado = Efectivo Inicial + Ventas en Efectivo del día
-        const esperado = inicial + totalVentasEfectivo;
+        // Obtener el total de gastos aprobados para restar
+        const solicitudes = JSON.parse(localStorage.getItem("solicitudesAnulacion")) || [];
+        const totalGastosAprobados = solicitudes
+            .filter(s => s.tipo === "Gasto" && s.estado === "Aprobada")
+            .reduce((sum, s) => sum + (parseFloat(s.monto) || 0), 0);
+
+        // Actualizar el elemento del total de gastos aprobados en la UI
+        const displayGastosAprobados = document.getElementById("arq_gastos_aprobados");
+        if (displayGastosAprobados) {
+            displayGastosAprobados.textContent = `C$ ${totalGastosAprobados.toFixed(2)}`;
+        }
+
+        // Efectivo esperado = Efectivo Inicial + Ventas en Efectivo del día - Gastos Aprobados
+        const esperado = inicial + totalVentasEfectivo - totalGastosAprobados;
         if (displayEsperado) {
             displayEsperado.textContent = `C$ ${esperado.toFixed(2)}`;
         }
@@ -148,7 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Guardar Arqueo de Caja
     btnGuardarArqueo?.addEventListener("click", () => {
         const inicial = parseFloat(inputMontoInicial?.value) || 0;
-        const esperado = inicial + totalVentasEfectivo;
+        
+        // Obtener el total de gastos aprobados para restar
+        const solicitudes = JSON.parse(localStorage.getItem("solicitudesAnulacion")) || [];
+        const totalGastosAprobados = solicitudes
+            .filter(s => s.tipo === "Gasto" && s.estado === "Aprobada")
+            .reduce((sum, s) => sum + (parseFloat(s.monto) || 0), 0);
+
+        const esperado = inicial + totalVentasEfectivo - totalGastosAprobados;
         
         let contado = 0;
         denominacionInputs.forEach(input => {
@@ -216,6 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Inicializar cálculos
+    cargarVentasRealizadas();
     recalcularVentasEfectivo();
     calcularCuadre();
 });

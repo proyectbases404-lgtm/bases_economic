@@ -13,16 +13,17 @@ const elementos = {
     btnPagar: document.getElementById('btn_pagar'),
     btnCancelar: document.getElementById('btn_cancelar'),
     buscador: document.getElementById('buscador'),
-    categorias: document.querySelectorAll('.cat_bot')
+    categorias: document.querySelectorAll('.cat_bot'),
+    metodoPago: document.getElementById('metodo_pago')
 };
 
 function agregarProducto(productoElement) {
-    const id = parseInt(productoElement.dataset.id);
+    const id = productoElement.dataset.id;
     const nombre = productoElement.dataset.name;
-    const precio = parseFloat(productoElement.dataset.price);
+    const precioBase = parseFloat(productoElement.dataset.price);
 
-    // Verificar si ya existe en la venta
-    const productoExistente = estado.productos.find(p => p.id === id);
+    // Verificar si ya existe en la venta con la misma agrupación "Unidad"
+    const productoExistente = estado.productos.find(p => String(p.id) === String(id) && p.agrupacion === "Unidad");
 
     if (productoExistente) {
         productoExistente.cantidad += 1;
@@ -30,7 +31,9 @@ function agregarProducto(productoElement) {
         estado.productos.push({
             id: id,
             nombre: nombre,
-            precio: precio,
+            basePrice: precioBase,
+            precio: precioBase,
+            agrupacion: "Unidad",
             cantidad: 1
         });
     }
@@ -50,10 +53,33 @@ function actualizarTabla() {
         estado.total = 0;
     } else {
         elementos.tablaVentas.innerHTML = estado.productos.map((producto, index) => {
+            const prodInventario = window.productosInventario?.find(p => String(p.id) === String(producto.id));
+            let selectAgrupacionHTML = '';
+
+            if (prodInventario && prodInventario.groupings) {
+                const groupingsList = Object.keys(prodInventario.groupings);
+                if (groupingsList.length > 0) {
+                    selectAgrupacionHTML = `
+                        <div class="venta_agrupacion_select_wrapper" style="margin-top: 4px; display: flex; align-items: center; justify-content: center;">
+                            <select class="venta_agrupacion_select" onchange="cambiarAgrupacion(${index}, this.value)" style="padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; border: 1px solid #cbd5e1; outline: none; background: #f8fafc; color: #334155; font-weight: 600; cursor: pointer; width: 100%; max-width: 140px; text-align: center;">
+                                ${groupingsList.map(gName => {
+                                    const equiv = prodInventario.groupings[gName];
+                                    const isSelected = producto.agrupacion === gName ? 'selected' : '';
+                                    return `<option value="${gName}" ${isSelected}>${gName} (${equiv} ud${equiv > 1 ? 's' : ''})</option>`;
+                                }).join('')}
+                            </select>
+                        </div>
+                    `;
+                }
+            }
+
             const totalProducto = producto.precio * producto.cantidad;
             return `
                     <tr data-index="${index}">
-                        <td>${producto.nombre}</td>
+                        <td>
+                            <div style="font-weight: 700; color: #0f172a; text-align: center;">${producto.nombre}</div>
+                            ${selectAgrupacionHTML}
+                        </td>
                         <td>
                             <div class="box_edit">
                                 <button class="bot_mod" onclick="cambiarCantidad(${index}, -1)">-</button>
@@ -109,6 +135,34 @@ function actualizarCantidadManual(index, valor) {
 }
 
 // ============================================
+// CAMBIAR AGRUPACIÓN
+// ============================================
+function cambiarAgrupacion(index, nuevaAgrupacion) {
+    const producto = estado.productos[index];
+    if (!producto) return;
+
+    producto.agrupacion = nuevaAgrupacion;
+
+    // Buscar el producto en el inventario para obtener la equivalencia
+    const prodInventario = window.productosInventario?.find(p => String(p.id) === String(producto.id));
+    const equiv = (prodInventario && prodInventario.groupings) ? (prodInventario.groupings[nuevaAgrupacion] || 1) : 1;
+
+    let precioAgrup = producto.basePrice * equiv;
+
+    // Buscar si hay precio especial configurado
+    if (window.preciosConfigurados && window.preciosConfigurados[producto.id]) {
+        const config = window.preciosConfigurados[producto.id].find(c => c.name === nuevaAgrupacion);
+        if (config) {
+            precioAgrup = config.price;
+        }
+    }
+
+    producto.precio = precioAgrup;
+    actualizarTabla();
+}
+window.cambiarAgrupacion = cambiarAgrupacion;
+
+// ============================================
 // ELIMINAR PRODUCTO
 // ============================================
 function eliminarProducto(index) {
@@ -120,6 +174,13 @@ function eliminarProducto(index) {
 // CALCULAR CAMBIO
 // ============================================
 function calcularCambio() {
+    const metodo = elementos.metodoPago ? elementos.metodoPago.value : 'efectivo';
+    if (metodo !== 'efectivo') {
+        elementos.pagoCon.value = estado.total > 0 ? estado.total.toFixed(0) : '';
+        elementos.vuelto.value = estado.total > 0 ? '0' : '';
+        return;
+    }
+
     const pago = parseFloat(elementos.pagoCon.value) || 0;
     const cambio = pago - estado.total;
 
@@ -171,18 +232,66 @@ function procesarPago() {
         return;
     }
 
-    const pago = parseFloat(elementos.pagoCon.value) || 0;
+    const metodoPago = elementos.metodoPago.value;
+    let pago = parseFloat(elementos.pagoCon.value) || 0;
 
-    if (pago < estado.total) {
-        alert('El monto pagado es menor al total');
-        return;
+    if (metodoPago === 'efectivo') {
+        if (pago < estado.total) {
+            alert('El monto pagado es menor al total');
+            return;
+        }
+    } else {
+        pago = estado.total;
     }
 
-    // Aquí puedes agregar la lógica para guardar la venta
-    const metodoPago = document.getElementById('metodo_pago').value;
     const cambio = pago - estado.total;
 
-    alert(`Venta procesada:\nTotal: C$${estado.total}\nMétodo: ${metodoPago}\nPago: C$${pago}\nCambio: C$${cambio.toFixed(0)}`);
+    // Obtener ventas del sistema
+    let ventas = JSON.parse(localStorage.getItem("ventasSistema")) || [];
+    if (ventas.length === 0 && typeof REPORT_DATABASE !== 'undefined') {
+        ventas = [...REPORT_DATABASE.ventas];
+    }
+
+    // Incrementar ID
+    let nextIdNum = 11;
+    ventas.forEach(v => {
+        const match = v.id.match(/VTA-0*(\d+)/);
+        if (match) {
+            const idNum = parseInt(match[1]);
+            if (idNum >= nextIdNum) nextIdNum = idNum + 1;
+        }
+    });
+    const nextId = `VTA-${String(nextIdNum).padStart(4, '0')}`;
+
+    const activeOperator = document.querySelector("header .box_comp label")?.textContent || "Carmelo";
+    const activeSucursal = document.getElementById("card_operar_sucursal")?.textContent || "Central";
+    const productNames = estado.productos.map(p => `${p.nombre} x${p.cantidad}`);
+
+    // Crear venta
+    const nuevaVenta = {
+        id: nextId,
+        fecha: new Date().toISOString().split('T')[0],
+        cliente: "Invitado",
+        vendedor: activeOperator,
+        metodoPago: metodoPago.charAt(0).toUpperCase() + metodoPago.slice(1),
+        total: estado.total,
+        costo: estado.productos.reduce((sum, p) => {
+            const prodInv = window.productosInventario?.find(i => String(i.id) === String(p.id));
+            const cost = prodInv ? prodInv.price * 0.65 : p.precio * 0.65;
+            return sum + (cost * p.cantidad);
+        }, 0),
+        sucursal: activeSucursal,
+        productos: productNames,
+        detallesProductos: [...estado.productos],
+        pagoCon: pago,
+        vuelto: cambio,
+        estado: "Completada"
+    };
+
+    ventas.unshift(nuevaVenta);
+    localStorage.setItem("ventasSistema", JSON.stringify(ventas));
+
+    alert("Venta realizada con éxito");
 
     // Limpiar después de pagar
     estado.productos = [];
@@ -190,6 +299,15 @@ function procesarPago() {
     elementos.pagoCon.value = '';
     elementos.vuelto.value = '';
     actualizarTabla();
+
+    // Actualizar historial de ventas si existe
+    if (typeof window.cargarVentasRealizadas === "function") {
+        window.cargarVentasRealizadas();
+    }
+    if (typeof window.recalcularVentasEfectivo === "function") {
+        window.recalcularVentasEfectivo();
+        window.calcularCuadre();
+    }
 }
 
 // ============================================
@@ -237,8 +355,23 @@ elementos.buscador.addEventListener('input', (e) => {
 // Calcular cambio al escribir
 elementos.pagoCon.addEventListener('input', calcularCambio);
 
+// Manejar cambio de método de pago
+elementos.metodoPago.addEventListener('change', () => {
+    const metodo = elementos.metodoPago.value;
+    if (metodo === 'efectivo') {
+        elementos.pagoCon.disabled = false;
+        elementos.pagoCon.value = '';
+        elementos.vuelto.value = '';
+    } else {
+        elementos.pagoCon.disabled = true;
+        elementos.pagoCon.value = estado.total > 0 ? estado.total.toFixed(0) : '';
+        elementos.vuelto.value = estado.total > 0 ? '0' : '';
+    }
+});
+
 // Botón pagar
 elementos.btnPagar.addEventListener('click', procesarPago);
 
 // Botón cancelar
 elementos.btnCancelar.addEventListener('click', cancelarVenta);
+

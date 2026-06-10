@@ -66,8 +66,25 @@ let currentReportType = 'ventas';
 // INICIALIZACIÓN
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Cargar ventas desde localStorage o inicializar con los datos por defecto
+    let ventasGuardadas = localStorage.getItem("ventasSistema");
+    if (ventasGuardadas) {
+        try {
+            REPORT_DATABASE.ventas = JSON.parse(ventasGuardadas);
+        } catch (e) {
+            console.error("Error al cargar ventas de localStorage", e);
+        }
+    } else {
+        localStorage.setItem("ventasSistema", JSON.stringify(REPORT_DATABASE.ventas));
+    }
+
     // Escuchar cambios en navegación para disparar el reporte
     document.querySelector('.nav_button[data-section="reportes"]')?.addEventListener('click', () => {
+        // Recargar ventas de localStorage por si se agregaron nuevas
+        let reloadVentas = localStorage.getItem("ventasSistema");
+        if (reloadVentas) {
+            REPORT_DATABASE.ventas = JSON.parse(reloadVentas);
+        }
         setTimeout(renderReports, 100);
     });
 
@@ -93,6 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // RENDERING PRINCIPAL
 // ==========================================
 function renderReports() {
+    // Recargar de localStorage
+    let reloadVentas = localStorage.getItem("ventasSistema");
+    if (reloadVentas) {
+        REPORT_DATABASE.ventas = JSON.parse(reloadVentas);
+    }
+    
     const rangoTiempo = document.getElementById("rep_rango_tiempo")?.value || 'mes';
     const tipoReporte = document.getElementById("rep_tipo")?.value || 'ventas';
     const sucursal = document.getElementById("rep_sucursal")?.value || 'todas';
@@ -122,6 +145,9 @@ function filtrarVentas(ventas, periodo, sucursal, cliente) {
     const hoy = new Date(hoyStr);
 
     return ventas.filter(venta => {
+        // Excluir ventas anuladas de las estadísticas y reportes
+        if (venta.estado === "Anulada") return false;
+
         // Filtro por Periodo de Tiempo
         const fechaVenta = new Date(venta.fecha);
         const diffTiempo = Math.abs(hoy - fechaVenta);

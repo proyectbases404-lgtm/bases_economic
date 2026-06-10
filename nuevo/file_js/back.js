@@ -25,6 +25,9 @@ const showSection = (sectionId) => {
         section.classList.toggle("active", section.id === sectionId)
     );
 
+    const header = document.querySelector("header.header");
+    header?.classList.toggle("hidden", sectionId !== "inicio");
+
     if (sectionId !== "inicio") {
         window.scrollTo({ top: 0, behavior: "smooth" });
         document.querySelector("main")
@@ -64,6 +67,20 @@ const mostrarModal = (modalId) => {
     document.getElementById("modal_crear_usuario").style.display = "none";
     const modalVerFactura = document.getElementById("modal_ver_factura_compra");
     if (modalVerFactura) modalVerFactura.style.display = "none";
+    const modalCrearCat = document.getElementById("modal_crear_categoria");
+    if (modalCrearCat) modalCrearCat.style.display = "none";
+    const modalEditarCat = document.getElementById("modal_editar_categoria");
+    if (modalEditarCat) modalEditarCat.style.display = "none";
+    const modalSolicitarAnulacion = document.getElementById("modal_solicitar_anulacion");
+    if (modalSolicitarAnulacion) modalSolicitarAnulacion.style.display = "none";
+    const modalVerCompras = document.getElementById("modal_ver_compras");
+    if (modalVerCompras) modalVerCompras.style.display = "none";
+    const modalVerGastos = document.getElementById("modal_ver_gastos");
+    if (modalVerGastos) modalVerGastos.style.display = "none";
+    const modalSolicitarEliminarProd = document.getElementById("modal_solicitar_eliminar_producto");
+    if (modalSolicitarEliminarProd) modalSolicitarEliminarProd.style.display = "none";
+    const modalVerProdElim = document.getElementById("modal_ver_producto_eliminar");
+    if (modalVerProdElim) modalVerProdElim.style.display = "none";
 
     const selectedModal = document.getElementById(modalId);
     if (selectedModal) {
@@ -74,6 +91,36 @@ const mostrarModal = (modalId) => {
 
 window.mostrarModal = mostrarModal;
 window.closeMostAggProdu = closeMostAggProdu;
+
+let callbackConfirmarEliminar = null;
+
+const mostrarConfirmacionEliminar = (titulo, mensaje, callback) => {
+    const modal = document.getElementById("modal_confirmar_eliminar");
+    const titEl = document.getElementById("confirmar_eliminar_titulo");
+    const msgEl = document.getElementById("confirmar_eliminar_mensaje");
+    
+    if (titEl) titEl.textContent = titulo;
+    if (msgEl) msgEl.textContent = mensaje;
+    
+    callbackConfirmarEliminar = callback;
+    
+    if (modal) {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+};
+
+const cerrarConfirmacionEliminar = () => {
+    const modal = document.getElementById("modal_confirmar_eliminar");
+    if (modal) {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+    }
+    callbackConfirmarEliminar = null;
+};
+
+window.mostrarConfirmacionEliminar = mostrarConfirmacionEliminar;
+window.cerrarConfirmacionEliminar = cerrarConfirmacionEliminar;
 
 // =========================
 // MODAL AVISO
@@ -144,12 +191,20 @@ document.addEventListener("click", (event) => {
     const modifyButton = target.closest("#regr_modify_produ");
     const verVentasClose = target.closest("#vol_v_venta");
     const verComprasClose = target.closest("#vol_v_compra");
+    const verComprasHistClose = target.closest("#vol_v_compra_hist");
+    const verGastoClose = target.closest("#vol_v_gasto");
     const crearUsuarioClose = target.closest("#regr_crear_usuario");
+    const crearCatClose = target.closest("#regr_crear_categoria");
+    const editarCatClose = target.closest("#regr_editar_categoria");
+    const solicitarEliminarProdClose = target.closest("#regr_solicitar_eliminar_producto");
+    const verProdElimClose = target.closest("#vol_v_prod_elim");
     const btnAceptar = target.closest("#btn_aceptar");
     const btnCancelar = target.closest("#btn_cancelar");
+    const btnConfirmarEliminarAceptar = target.closest("#btn_confirmar_eliminar_aceptar");
+    const btnConfirmarEliminarCancelar = target.closest("#btn_confirmar_eliminar_cancelar");
 
     // Abrir modal aviso
-    if (closeButton || modifyButton || verVentasClose || crearUsuarioClose || verComprasClose) {
+    if (closeButton || modifyButton || verVentasClose || crearUsuarioClose || verComprasClose || crearCatClose || editarCatClose || verComprasHistClose || verGastoClose || solicitarEliminarProdClose || verProdElimClose) {
         event.preventDefault();
         return openMostAviso();
     }
@@ -172,6 +227,20 @@ document.addEventListener("click", (event) => {
         closeMostAggProdu();
         return;
     }
+
+    // Cerrar modal confirmacion eliminar
+    if (btnConfirmarEliminarCancelar) {
+        event.preventDefault();
+        return cerrarConfirmacionEliminar();
+    }
+
+    if (btnConfirmarEliminarAceptar) {
+        event.preventDefault();
+        if (typeof callbackConfirmarEliminar === "function") {
+            callbackConfirmarEliminar();
+        }
+        return cerrarConfirmacionEliminar();
+    }
     // Cerrar al hacer click fuera
     if (
         mostAggProdu.classList.contains("open") &&
@@ -185,6 +254,15 @@ document.addEventListener("click", (event) => {
         target === mostAviso
     ) {
         closeMostAviso();
+    }
+
+    const modalCE = document.getElementById("modal_confirmar_eliminar");
+    if (
+        modalCE &&
+        modalCE.classList.contains("open") &&
+        target === modalCE
+    ) {
+        cerrarConfirmacionEliminar();
     }
 
     // Cerrar sidebar fuera
@@ -238,13 +316,14 @@ formCrearUsuario?.addEventListener("submit", (event) => {
     const usuario = document.getElementById("reg_usuario").value.trim();
     const contrasena = document.getElementById("reg_contrasena").value;
     const rol = document.getElementById("reg_rol").value;
+    const sucursal = document.getElementById("reg_sucursal_usr").value;
 
     if (!nombre || !usuario || !contrasena) {
         alert("Por favor, completa todos los campos obligatorios.");
         return;
     }
 
-    const rolClass = rol === "Administrador" ? "rol_admin" : "rol_cliente";
+    const rolClass = rol === "Gerente" ? "rol_gerente" : rol === "Administrador" ? "rol_admin" : "rol_vendedor";
 
     if (userRowBeingEdited) {
         // Lógica de Edición: Actualizar la fila existente
@@ -254,6 +333,7 @@ formCrearUsuario?.addEventListener("submit", (event) => {
             userRowBeingEdited.cells[2].textContent = "********";
         }
         userRowBeingEdited.cells[3].innerHTML = `<span class="${rolClass}">${rol}</span>`;
+        userRowBeingEdited.cells[4].textContent = sucursal;
     } else {
         // Lógica de Creación: Añadir una nueva fila
         const tr = document.createElement("tr");
@@ -264,6 +344,7 @@ formCrearUsuario?.addEventListener("submit", (event) => {
             <td>
                 <span class="${rolClass}">${rol}</span>
             </td>
+            <td>${sucursal}</td>
             <td class="ultima-sesion">Sin sesión</td>
             <td>
                 <div class="box_acciones">
@@ -293,11 +374,13 @@ tablaUsuariosBody?.addEventListener("click", (event) => {
         const nombre = tr.cells[0].textContent.trim();
         const usuario = tr.cells[1].textContent.trim();
         const rol = tr.cells[3].textContent.trim();
+        const sucursal = tr.cells[4].textContent.trim();
 
         document.getElementById("reg_nombre").value = nombre;
         document.getElementById("reg_usuario").value = usuario;
         document.getElementById("reg_contrasena").value = "********"; // placeholder
         document.getElementById("reg_rol").value = rol;
+        document.getElementById("reg_sucursal_usr").value = sucursal;
 
         document.querySelector("#modal_crear_usuario h1").textContent = "Editar Usuario";
         document.getElementById("btn_guardar_usuario").textContent = "Guardar Cambios";
@@ -529,7 +612,7 @@ const defaultProducts = [
             "Six Pack": 6,
             "Caja": 24
         },
-        location: "Refrigerador"
+        location: "Mostrador"
     },
     {
         id: "2",
@@ -541,7 +624,7 @@ const defaultProducts = [
             "Caja": 12,
             "Paquete": 12
         },
-        location: "Bodega A"
+        location: "Bodega"
     },
     {
         id: "3",
@@ -552,7 +635,7 @@ const defaultProducts = [
             "Unidad": 1,
             "Caja": 6
         },
-        location: "Vitrina"
+        location: "Mostrador"
     },
     {
         id: "4",
@@ -564,7 +647,7 @@ const defaultProducts = [
             "Six Pack": 6,
             "Caja": 24
         },
-        location: "Refrigerador"
+        location: "Mostrador"
     },
     {
         id: "5",
@@ -575,7 +658,7 @@ const defaultProducts = [
             "Unidad": 1,
             "Caja": 6
         },
-        location: "Bodega B"
+        location: "Bodega"
     },
     {
         id: "6",
@@ -587,7 +670,7 @@ const defaultProducts = [
             "Cajilla": 20,
             "Paquete": 10
         },
-        location: "Vitrina"
+        location: "Mostrador"
     },
     {
         id: "7",
@@ -598,7 +681,7 @@ const defaultProducts = [
             "Unidad": 1,
             "Paquete": 6
         },
-        location: "Refrigerador"
+        location: "Mostrador"
     }
 ];
 
@@ -609,6 +692,15 @@ function cargarProductos() {
     if (data) {
         try {
             window.productosInventario = JSON.parse(data);
+            // Sanitizar ubicaciones para usar solo Mostrador y Bodega
+            window.productosInventario.forEach(prod => {
+                if (prod.location === "Refrigerador" || prod.location === "Vitrina" || prod.location === "Caja Principal" || prod.location === "Seleccionar") {
+                    prod.location = "Mostrador";
+                } else if (prod.location === "Bodega A" || prod.location === "Bodega B") {
+                    prod.location = "Bodega";
+                }
+            });
+            localStorage.setItem("productosInventario", JSON.stringify(window.productosInventario));
         } catch (e) {
             console.error("Error al parsear productos, restableciendo por defecto.", e);
             window.productosInventario = [...defaultProducts];
@@ -628,7 +720,14 @@ function guardarProductos() {
     if (typeof window.actualizarDropdownPreciosAgrupacion === "function") {
         window.actualizarDropdownPreciosAgrupacion();
     }
+    
+    // Notify the inventory movement logic to update its tables and options
+    if (typeof window.actualizarInventario === "function") {
+        window.actualizarInventario();
+    }
 }
+
+window.guardarProductos = guardarProductos;
 
 // Dynamic Rendering Functions
 function renderizarTodoProductos() {
@@ -636,6 +735,8 @@ function renderizarTodoProductos() {
     renderRegisteredProductsTable();
     renderModificationList();
 }
+
+window.renderizarTodoProductos = renderizarTodoProductos;
 
 function renderMainProductsTable() {
     const tbody = document.getElementById("tabla_gestion_productos_body");
@@ -661,6 +762,10 @@ function renderMainProductsTable() {
             </tr>
         `;
     }).join('');
+
+    if (typeof window.filtrarProductosGestion === "function") {
+        window.filtrarProductosGestion();
+    }
 }
 
 function renderRegisteredProductsTable() {
@@ -684,12 +789,8 @@ function renderRegisteredProductsTable() {
                 </td>
                 <td>
                     <select class="ubicacion" data-id="${prod.id}" onchange="cambiarUbicacionProducto('${prod.id}', this.value)">
-                        <option value="Seleccionar" ${prod.location === "Seleccionar" ? "selected" : ""}>Seleccionar</option>
-                        <option value="Bodega A" ${prod.location === "Bodega A" ? "selected" : ""}>Bodega A</option>
-                        <option value="Bodega B" ${prod.location === "Bodega B" ? "selected" : ""}>Bodega B</option>
-                        <option value="Refrigerador" ${prod.location === "Refrigerador" ? "selected" : ""}>Refrigerador</option>
-                        <option value="Vitrina" ${prod.location === "Vitrina" ? "selected" : ""}>Vitrina</option>
-                        <option value="Caja Principal" ${prod.location === "Caja Principal" ? "selected" : ""}>Caja Principal</option>
+                        <option value="Mostrador" ${prod.location === "Mostrador" ? "selected" : ""}>Mostrador</option>
+                        <option value="Bodega" ${prod.location === "Bodega" ? "selected" : ""}>Bodega</option>
                     </select>
                 </td>
                 <td>
@@ -746,7 +847,7 @@ function cargarFormularioModificar(id) {
     document.getElementById("modificar_producto_nombre").value = prod.name;
     document.getElementById("modificar_producto_precio").value = prod.price || "";
     document.getElementById("modificar_producto_categoria").value = prod.category;
-    document.getElementById("modificar_producto_ubicacion").value = prod.location || "Bodega A";
+    document.getElementById("modificar_producto_ubicacion").value = prod.location || "Bodega";
 
     // Set checkboxes and quantities
     const container = document.getElementById("modificar_producto_groupings");
@@ -816,7 +917,7 @@ document.getElementById("form_crear_producto")?.addEventListener("submit", (e) =
         price: precio,
         category: categoria,
         groupings: groupings,
-        location: "Seleccionar"
+        location: "Mostrador"
     };
 
     window.productosInventario.push(nuevoProd);
@@ -887,39 +988,54 @@ document.getElementById("btn_guardar_modificacion_producto")?.addEventListener("
     alert("¡Producto modificado exitosamente!");
 });
 
+function cargarAdministradoresEliminarProducto() {
+    const selectAdmin = document.getElementById("eliminar_producto_admin");
+    if (!selectAdmin) return;
+
+    selectAdmin.innerHTML = "";
+
+    // Carmelo es el administrador principal por defecto
+    const optCarmelo = document.createElement("option");
+    optCarmelo.value = "Carmelo";
+    optCarmelo.textContent = "Carmelo (Administrador Principal)";
+    selectAdmin.appendChild(optCarmelo);
+
+    // Buscar otros administradores en la lista de usuarios
+    const userRows = document.querySelectorAll("#tabla_usuarios_body tr");
+    userRows.forEach(row => {
+        const cells = row.cells;
+        if (cells && cells.length >= 5) {
+            const nombre = cells[0].textContent.trim();
+            const rolText = cells[3].textContent.trim();
+            if (rolText.toLowerCase().includes("admin") && nombre.toLowerCase() !== "carmelo") {
+                const opt = document.createElement("option");
+                opt.value = nombre;
+                opt.textContent = `${nombre} (Administrador)`;
+                selectAdmin.appendChild(opt);
+            }
+        }
+    });
+}
+
+window.abrirSolicitudEliminarProducto = function(productoId) {
+    const prod = window.productosInventario.find(p => p.id === productoId);
+    if (!prod) return;
+
+    document.getElementById("eliminar_producto_id").value = productoId;
+    document.getElementById("eliminar_producto_motivo").value = "";
+    cargarAdministradoresEliminarProducto();
+    
+    // Mostrar modal
+    mostrarModal("modal_solicitar_eliminar_producto");
+};
+
 document.getElementById("btn_eliminar_producto")?.addEventListener("click", (e) => {
     e.preventDefault();
     if (!selectedModProductId) {
         alert("Selecciona un producto de la lista para eliminar.");
         return;
     }
-
-    const prod = window.productosInventario.find(p => p.id === selectedModProductId);
-    if (!prod) return;
-
-    if (confirm(`¿Estás seguro de que deseas eliminar el producto "${prod.name}"?`)) {
-        window.productosInventario = window.productosInventario.filter(p => p.id !== selectedModProductId);
-        selectedModProductId = null;
-        
-        document.getElementById("modificar_producto_nombre").value = "";
-        document.getElementById("modificar_producto_precio").value = "";
-        document.getElementById("modificar_producto_categoria").value = "Licores";
-        document.getElementById("modificar_producto_ubicacion").value = "Bodega A";
-        
-        const container = document.getElementById("modificar_producto_groupings");
-        if (container) {
-            container.querySelectorAll(".group_item_row").forEach(row => {
-                const checkbox = row.querySelector("input[type='checkbox']");
-                if (checkbox.dataset.group !== "Unidad") {
-                    checkbox.checked = false;
-                    row.classList.remove("active");
-                }
-            });
-        }
-
-        guardarProductos();
-        alert("Producto eliminado exitosamente.");
-    }
+    window.abrirSolicitudEliminarProducto(selectedModProductId);
 });
 
 document.getElementById("buscar_producto_modificar")?.addEventListener("input", (e) => {
@@ -953,12 +1069,7 @@ document.getElementById("tabla_gestion_productos_body")?.addEventListener("click
     if (btnElim) {
         e.preventDefault();
         const id = btnElim.dataset.id;
-        const prod = window.productosInventario.find(p => p.id === id);
-        if (prod && confirm(`¿Estás seguro de que deseas eliminar "${prod.name}"?`)) {
-            window.productosInventario = window.productosInventario.filter(p => p.id !== id);
-            guardarProductos();
-            alert("Producto eliminado.");
-        }
+        window.abrirSolicitudEliminarProducto(id);
     }
 });
 
@@ -967,21 +1078,368 @@ document.getElementById("tabla_registrados_productos_body")?.addEventListener("c
     if (btnElim) {
         e.preventDefault();
         const id = btnElim.dataset.id;
-        const prod = window.productosInventario.find(p => p.id === id);
-        if (prod && confirm(`¿Estás seguro de que deseas eliminar "${prod.name}"?`)) {
-            window.productosInventario = window.productosInventario.filter(p => p.id !== id);
-            guardarProductos();
-            alert("Producto eliminado.");
+        window.abrirSolicitudEliminarProducto(id);
+    }
+});
+
+// ==========================================
+// GESTIÓN DE CATEGORÍAS
+// ==========================================
+const defaultCategorias = ["Licores", "Cigarros", "Bebidas", "Snacks"];
+
+function getCategorias() {
+    const data = localStorage.getItem("categoriasInventario");
+    if (data) {
+        try {
+            return JSON.parse(data);
+        } catch (e) {
+            console.error("Error al parsear categoriasInventario", e);
         }
     }
+    localStorage.setItem("categoriasInventario", JSON.stringify(defaultCategorias));
+    return defaultCategorias;
+}
+window.getCategorias = getCategorias;
+
+function actualizarCategoriasEnUI() {
+    const categorias = getCategorias();
+
+    // 1. Selector en modal crear producto
+    const selectCrear = document.getElementById("crear_producto_categoria");
+    if (selectCrear) {
+        selectCrear.innerHTML = '<option value="">Seleccionar</option>' + 
+            categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    // 2. Selector en modal modificar producto
+    const selectMod = document.getElementById("modificar_producto_categoria");
+    if (selectMod) {
+        const valActual = selectMod.value;
+        selectMod.innerHTML = categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+        if (valActual && categorias.includes(valActual)) {
+            selectMod.value = valActual;
+        }
+    }
+
+    // 3. Selector de filtro en gestión de productos
+    const selectFiltroProd = document.getElementById("Selec_catego");
+    if (selectFiltroProd) {
+        selectFiltroProd.innerHTML = '<option value="">Seleccionar categoría</option>' + 
+            categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    // 4. Selector de filtro en inventario
+    const selectFiltroInvent = document.getElementById("cat_invent");
+    if (selectFiltroInvent) {
+        selectFiltroInvent.innerHTML = '<option value="">Seleccionar categoría</option>' + 
+            categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    // 5. Botones de categoría en el Punto de Venta (POS)
+    const navBotton = document.querySelector("#punto-venta .nav_botton");
+    if (navBotton) {
+        const activeCat = navBotton.querySelector(".cat_bot.active")?.dataset.category || "todos";
+        navBotton.innerHTML = '<button class="cat_bot" data-category="todos">Todos</button>' + 
+            categorias.map(c => `<button class="cat_bot" data-category="${c.toLowerCase()}">${c}</button>`).join('');
+
+        const botonesCategorias = navBotton.querySelectorAll('.cat_bot');
+        let foundActive = false;
+        botonesCategorias.forEach(boton => {
+            if (boton.dataset.category === activeCat) {
+                boton.classList.add('active');
+                foundActive = true;
+            }
+            boton.addEventListener('click', () => {
+                botonesCategorias.forEach(b => b.classList.remove('active'));
+                boton.classList.add('active');
+                if (typeof window.filtrarPorCategoria === "function") {
+                    window.filtrarPorCategoria(boton.dataset.category);
+                }
+            });
+        });
+        if (!foundActive && botonesCategorias[0]) {
+            botonesCategorias[0].classList.add('active');
+        }
+    }
+
+    // 6. Lista en el panel de Gestión de Categorías
+    const listaCategoriasUI = document.getElementById("lista_categorias_usuarios");
+    if (listaCategoriasUI) {
+        listaCategoriasUI.innerHTML = categorias.map(c => {
+            const esDefault = defaultCategorias.includes(c);
+            const deleteBtn = !esDefault ? `<button type="button" onclick="eliminarCategoria('${c}')" style="border: none; background: transparent; color: #ef4444; cursor: pointer; font-weight: bold; padding: 0 2px; font-size: 1rem; line-height: 1;">×</button>` : '';
+            return `
+                <span class="badge_categoria" style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                    ${c}
+                    ${deleteBtn}
+                </span>
+            `;
+        }).join('');
+    }
+
+    // 7. Selector en modal editar categoría
+    const selectEditarCat = document.getElementById("select_editar_categoria");
+    if (selectEditarCat) {
+        const valActual = selectEditarCat.value;
+        selectEditarCat.innerHTML = '<option value="">Seleccionar categoría</option>' + 
+            categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+        if (valActual && categorias.includes(valActual)) {
+            selectEditarCat.value = valActual;
+        }
+    }
+}
+window.actualizarCategoriasEnUI = actualizarCategoriasEnUI;
+
+function agregarCategoria(nuevaCategoria) {
+    const limpia = nuevaCategoria.trim();
+    if (!limpia) return false;
+
+    const categorias = getCategorias();
+    if (categorias.some(c => c.toLowerCase() === limpia.toLowerCase())) {
+        alert("La categoría ya existe.");
+        return false;
+    }
+
+    categorias.push(limpia);
+    localStorage.setItem("categoriasInventario", JSON.stringify(categorias));
+    actualizarCategoriasEnUI();
+    return true;
+}
+window.agregarCategoria = agregarCategoria;
+
+function eliminarCategoria(categoria) {
+    if (confirm(`¿Estás seguro de que deseas eliminar la categoría "${categoria}"?`)) {
+        let categorias = getCategorias();
+        categorias = categorias.filter(c => c !== categoria);
+        localStorage.setItem("categoriasInventario", JSON.stringify(categorias));
+        actualizarCategoriasEnUI();
+    }
+}
+window.eliminarCategoria = eliminarCategoria;
+
+function editarCategoria(categoriaVieja, categoriaNueva) {
+    const viejaLimpia = categoriaVieja.trim();
+    const nuevaLimpia = categoriaNueva.trim();
+    if (!viejaLimpia || !nuevaLimpia) return false;
+    if (viejaLimpia.toLowerCase() === nuevaLimpia.toLowerCase()) return false;
+
+    let categorias = getCategorias();
+    const index = categorias.findIndex(c => c.toLowerCase() === viejaLimpia.toLowerCase());
+    if (index === -1) {
+        alert("La categoría a editar no existe.");
+        return false;
+    }
+
+    if (categorias.some((c, i) => i !== index && c.toLowerCase() === nuevaLimpia.toLowerCase())) {
+        alert("Ya existe una categoría con ese nombre.");
+        return false;
+    }
+
+    const originalVieja = categorias[index];
+    categorias[index] = nuevaLimpia;
+    localStorage.setItem("categoriasInventario", JSON.stringify(categorias));
+
+    let productosModificados = false;
+    window.productosInventario = window.productosInventario.map(prod => {
+        if (prod.category && prod.category.toLowerCase() === originalVieja.toLowerCase()) {
+            prod.category = nuevaLimpia;
+            productosModificados = true;
+        }
+        return prod;
+    });
+
+    if (productosModificados) {
+        localStorage.setItem("productosInventario", JSON.stringify(window.productosInventario));
+        renderizarTodoProductos();
+        if (typeof window.actualizarDropdownPreciosAgrupacion === "function") {
+            window.actualizarDropdownPreciosAgrupacion();
+        }
+    }
+
+    actualizarCategoriasEnUI();
+    return true;
+}
+window.editarCategoria = editarCategoria;
+
+// Vincular formulario de agregar categoría y editar categoría
+document.addEventListener("DOMContentLoaded", () => {
+    // Formulario de agregar categoría en modal
+    const formCrearCat = document.getElementById("form_crear_categoria");
+    formCrearCat?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("nueva_categoria_nombre");
+        if (input && input.value.trim()) {
+            const val = input.value.trim();
+            if (agregarCategoria(val)) {
+                alert(`¡Categoría "${val}" agregada exitosamente!`);
+                input.value = "";
+                closeMostAggProdu();
+            }
+        }
+    });
+
+    // Formulario de editar categoría en modal
+    const formEditarCat = document.getElementById("form_editar_categoria");
+    formEditarCat?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const select = document.getElementById("select_editar_categoria");
+        const input = document.getElementById("editar_categoria_nombre");
+        if (select && input && select.value && input.value.trim()) {
+            const catVieja = select.value;
+            const nuevoNombre = input.value.trim();
+            if (editarCategoria(catVieja, nuevoNombre)) {
+                alert(`¡Categoría modificada de "${catVieja}" a "${nuevoNombre}" exitosamente!`);
+                select.value = "";
+                input.value = "";
+                closeMostAggProdu();
+            }
+        } else {
+            alert("Por favor, selecciona una categoría y escribe el nuevo nombre.");
+        }
+    });
+
+    // Cambiar input en modal editar categoría cuando cambia la selección
+    const selectEditarCat = document.getElementById("select_editar_categoria");
+    selectEditarCat?.addEventListener("change", (e) => {
+        const input = document.getElementById("editar_categoria_nombre");
+        if (input) {
+            input.value = e.target.value;
+        }
+    });
+
+    // Botones de categoría en el listado de gestión de productos
+    const btnAgregarCatProd = document.getElementById("btn_agregar_categoria_prod");
+    btnAgregarCatProd?.addEventListener("click", (e) => {
+        e.preventDefault();
+        mostrarModal("modal_crear_categoria");
+        const input = document.getElementById("nueva_categoria_nombre");
+        if (input) input.value = "";
+    });
+
+    const btnEditarCatProd = document.getElementById("btn_editar_categoria_prod");
+    btnEditarCatProd?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const categorias = getCategorias();
+        if (categorias.length === 0) {
+            alert("No hay categorías registradas.");
+            return;
+        }
+        mostrarModal("modal_editar_categoria");
+        const select = document.getElementById("select_editar_categoria");
+        const input = document.getElementById("editar_categoria_nombre");
+        if (select) select.value = "";
+        if (input) input.value = "";
+    });
+
+    // Buscador y filtro de categorías en la gestión de productos
+    const inputBuscarProd = document.getElementById("buscar_producto_gestion");
+    const selectFiltroCat = document.getElementById("Selec_catego");
+
+    const filtrar = () => {
+        const query = inputBuscarProd?.value.trim().toLowerCase() || "";
+        const cat = selectFiltroCat?.value || "";
+        const tbody = document.getElementById("tabla_gestion_productos_body");
+        if (!tbody) return;
+
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach(row => {
+            const prodId = row.dataset.id;
+            const prod = window.productosInventario.find(p => p.id === prodId);
+            if (!prod) return;
+
+            const matchesName = prod.name.toLowerCase().includes(query);
+            const matchesCat = !cat || prod.category.toLowerCase() === cat.toLowerCase();
+
+            if (matchesName && matchesCat) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    };
+
+    inputBuscarProd?.addEventListener("input", filtrar);
+    selectFiltroCat?.addEventListener("change", filtrar);
+
+    // Formulario de solicitud de eliminación de producto
+    const formEliminarProd = document.getElementById("form_solicitar_eliminar_producto");
+    formEliminarProd?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const prodId = document.getElementById("eliminar_producto_id").value;
+        const motivoInput = document.getElementById("eliminar_producto_motivo");
+        const adminSelect = document.getElementById("eliminar_producto_admin");
+
+        if (!prodId || !motivoInput || !adminSelect) return;
+
+        const motivo = motivoInput.value.trim();
+        const admin = adminSelect.value;
+        const solicitante = (typeof activeOperator !== "undefined" && activeOperator) ? activeOperator : "Carmelo";
+
+        if (!motivo) {
+            alert("Por favor, escriba el motivo de la eliminación.");
+            return;
+        }
+
+        const prod = window.productosInventario.find(p => p.id === prodId);
+        if (!prod) {
+            alert("Producto no encontrado.");
+            return;
+        }
+
+        const solicitudes = JSON.parse(localStorage.getItem("solicitudesAnulacion")) || [];
+        const nuevoSolId = `PROD-${String(Date.now()).slice(-4)}`;
+
+        const nuevaSol = {
+            id: nuevoSolId,
+            ventaId: nuevoSolId,
+            monto: prod.price,
+            tipo: "Producto",
+            fecha: new Date().toISOString().split("T")[0],
+            motivo: motivo,
+            solicitadoPor: solicitante,
+            adminAsignado: admin,
+            estado: "Pendiente",
+            detallesProducto: {
+                id: prod.id,
+                name: prod.name,
+                category: prod.category,
+                location: prod.location,
+                price: prod.price,
+                groupings: prod.groupings
+            }
+        };
+
+        solicitudes.unshift(nuevaSol);
+        localStorage.setItem("solicitudesAnulacion", JSON.stringify(solicitudes));
+
+        // Registro de Auditoría
+        if (typeof registrarLogOperar === "function") {
+            const sucursal = (typeof activeSucursal !== "undefined") ? activeSucursal : "Central";
+            registrarLogOperar(solicitante, sucursal, `Solicitó la eliminación del producto "${prod.name}" (ID: ${prod.id}) asignado a ${admin} por: ${motivo}`);
+        }
+
+        alert(`Solicitud de eliminación para "${prod.name}" registrada. Requiere la aprobación del administrador asignado (${admin}) en la pestaña de Anulaciones.`);
+
+        // Cerrar modal
+        closeMostAggProdu();
+
+        // Re-renderizar solicitudes en la bandeja
+        if (typeof window.renderSolicitudes === "function") {
+            window.renderSolicitudes();
+        }
+    });
+
+    window.filtrarProductosGestion = filtrar;
 });
 
 // Initial Load
 cargarProductos();
 renderizarTodoProductos();
+actualizarCategoriasEnUI();
 if (typeof window.actualizarDropdownPreciosAgrupacion === "function") {
     window.actualizarDropdownPreciosAgrupacion();
 }
 if (window.productosInventario.length > 0) {
     cargarFormularioModificar(window.productosInventario[0].id);
-}
+}
